@@ -1,0 +1,26 @@
+{
+  "name": "angular-jekyll-editor",
+  "title": "Angular based editor for jekyll based sites",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "Vaclav Klecanda <vencax77@gmail.com>",
+  },
+  "dependencies": {
+    "lineman": "^0.34.0",
+    "lineman-angular": "^0.3.0",
+    "lineman-bower": "0.0.5",
+    "lineman-less": "0.0.1"
+  },
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "coffee-script": "^1.6.3",
+    "express": "^4.11.1",
+    "jasmine-given": "^2.6.2",
+    "protractor": "^1.2.0-beta1"
+  },
+  "scripts": {
+    "start": "lineman run",
+    "test": "lineman spec-ci"
+  }
+}

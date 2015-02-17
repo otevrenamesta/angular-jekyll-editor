@@ -1,0 +1,30 @@
+{
+  "name": "angular-jekyll-editor",
+  "version": "0.0.1",
+  "homepage": "",
+  "authors": [
+    "Vaclav Klecanda <vencax77@gmail.com>"
+  ],
+  "description": "Angular based editor for jekyll based sites",
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.7.0",
+    "ngstorage": "~0.3.0",
+    "angular": "^1.2",
+    "angular-route": "^1.2.*",
+    "octokat": "~0.4.6",
+    "angular-gettext": "~2.0.2"
+  }
+}
