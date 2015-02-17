@@ -1,0 +1,27 @@
+###
+Exports a function which returns an object that overrides the default &
+   plugin grunt configuration object.
+###
+
+module.exports = (lineman) ->
+
+  app = lineman.config.application
+
+  app.pages.dev.context.env_cfg =
+    apiurl: process.env.API_URL || ''
+    repo: process.env.REPO || 'piratek/piratek.github.io'
+
+  app.pages.dist.context.env_cfg =
+    apiurl: process.env.API_URL || ''
+    repo: process.env.REPO || 'piratek/piratek.github.io'
+
+  # less:
+  #   options:
+  #     paths: app.less.options.paths.concat([
+  #       "vendor/foundation/css/"
+  #     ])
+
+  server:
+    pushState: true
+    web:
+      port: process.env.PORT || 8000
