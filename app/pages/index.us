@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="cs">
+  <head>
+    <title>Angular jekyll editor</title>
+
+    <meta charset="utf-8">
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
+
+  </head>
+  <body>
+
+    <div ng-include src="'mixins/navbar.html'" data-ng-show="!!loggedUser">
+    </div>
+
+    <div class="container-fluid">
+      <div id="view" ng-view></div>
+    </div>
+
+    <footer ng-include src="'mixins/footer.html'">
+    </footer>
+
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script>
+      angular.module('app').constant('Conf', {
+        api: '<%= env_cfg.apiurl %>',
+        repo: '<%= env_cfg.repo %>'
+      });
+    </script>
+
+  </body>
+</html>

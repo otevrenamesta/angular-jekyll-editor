@@ -1,0 +1,34 @@
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> {{'HOME' | translate}}</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/pages"><span class="glyphicon glyphicon-list-alt"></span> {{'pages'|translate}}</a></li>
+        <li><a href="/posts"><span class="glyphicon glyphicon-magnet"></span> {{'posts'|translate}}</a></li>
+        <li><a href="/files"><span class="glyphicon glyphicon-plane"></span> {{'files'|translate}}</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text">{{'LOGGEDAS' | translate}}: <a href="/profile">{{ loggedUser.fullName }}</a></p></li>
+        <li>
+          <button type="button" class="btn btn-sm btn-default navbar-btn" ng-click="logout()">
+            <span class="glyphicon glyphicon-off"></span> {{'LOGOUT' | translate}}</a>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+</nav>

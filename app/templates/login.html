@@ -1,0 +1,54 @@
+
+<h1 translate>login</h1>
+
+<div class="row">
+
+  <div class="small-12 large-6 columns">
+
+    <form class="form-signin" data-ng-submit="login();" name="loginfrm" role="form">
+
+      <div class="form-group">
+        <input type="text" name="uname" class="form-control"
+          placeholder="{{'username'|translate}}"
+          required autofocus ng-model="credentials.username">
+
+        <div class="error-container" ng-show="loginfrm.uname.$dirty && loginfrm.uname.$invalid">
+          <small class="text-danger" ng-show="loginfrm.uname.$error.required" translate>
+            Input username
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" name="passwd" class="form-control"
+          placeholder="{{'password'|translate}}"
+          required ng-model="credentials.password">
+
+        <div class="error-container" ng-show="loginfrm.passwd.$dirty && loginfrm.passwd.$invalid">
+          <small class="text-danger" ng-show="loginfrm.passwd.$error.required" translate>
+            Input your password
+          </small>
+        </div>
+      </div>
+
+      <div data-ng-show="error" class="alert alert-danger" role="alert">
+        {{ error }}. <a href="/requestpwd">Forgot your password?</a>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary">
+          <span class="glyphicon glyphicon-user"></span> {{'login'|translate}}
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="small-12 large-6 columns">
+
+    Keci kecy
+
+  </div>
+
+</div>
