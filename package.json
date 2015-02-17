@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "author": {
-    "name": "Vaclav Klecanda <vencax77@gmail.com>",
+    "name": "Vaclav Klecanda <vencax77@gmail.com>"
   },
   "dependencies": {
     "lineman": "^0.34.0",
