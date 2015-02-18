@@ -24,7 +24,8 @@
     <script>
       angular.module('app').constant('Conf', {
         api: '<%= env_cfg.apiurl %>',
-        repo: '<%= env_cfg.repo %>'
+        repo: '<%= env_cfg.repo %>',
+        appId: '<%= env_cfg.appId %>',
       });
     </script>
 

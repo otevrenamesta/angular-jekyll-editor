@@ -10,10 +10,12 @@ module.exports = (lineman) ->
   app.pages.dev.context.env_cfg =
     apiurl: process.env.API_URL || ''
     repo: process.env.REPO || 'piratek/piratek.github.io'
+    appId: process.env.APPID || 'angular-jekyll-editor'
 
   app.pages.dist.context.env_cfg =
     apiurl: process.env.API_URL || ''
     repo: process.env.REPO || 'piratek/piratek.github.io'
+    appId: process.env.APPID || 'angular-jekyll-editor'
 
   # less:
   #   options:

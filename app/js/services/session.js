@@ -1,9 +1,9 @@
 
 angular.module("app")
 
-.factory('SessionSrvc', function($localStorage, $location) {
+.factory('SessionSrvc', function($localStorage, $location, Conf) {
 
-  var _cuKey = $location.host() + $location.port() + 'currentUser';
+  var _cuKey = $location.host() + $location.port() + Conf.appId + 'currentUser';
 
   return {
     setCurrentUser: function(currentUser) {
