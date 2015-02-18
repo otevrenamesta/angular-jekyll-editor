@@ -37,5 +37,5 @@ module.exports = (lineman) ->
 
   css:
     vendor: [
-      "vendor/foundation/css/foundation.css"
+      "vendor/bower/foundation/css/foundation.css"
     ]

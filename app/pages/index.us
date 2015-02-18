@@ -10,8 +10,9 @@
   </head>
   <body>
 
-    <div ng-include src="'mixins/navbar.html'" data-ng-show="!!loggedUser">
-    </div>
+    <header id="header">
+      <div ng-include src="'mixins/navbar.html'" data-ng-show="!!loggedUser"></div>
+    </header>
 
     <div class="container-fluid">
       <div id="view" ng-view></div>

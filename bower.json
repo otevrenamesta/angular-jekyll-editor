@@ -25,6 +25,7 @@
     "angular": "^1.2",
     "angular-route": "^1.2.*",
     "octokat": "~0.4.6",
-    "angular-gettext": "~2.0.2"
+    "angular-gettext": "~2.0.2",
+    "foundation": "~5.5.1"
   }
 }
