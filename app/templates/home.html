@@ -3,6 +3,10 @@
 
 <div class="row">
   <div class="small-12 columns">
-    {{ pages }}
+    <ul>
+      <li ng-repeat="p in pages">
+        <a href="/page/{{p.name}}">{{ p.name }}</a>
+      </li>
+    </ul>
   </div>
 </div>
