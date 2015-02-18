@@ -22,18 +22,19 @@ var app = angular.module("app", [
   });
 
   if(SessionSrvc.isLoggedIn()) {
-    $rootScope.loggedUser = SessionSrvc.getCurrentUser();
+    GithubSrvc.login(SessionSrvc.getCurrentUser(), function(err, userinfo) {
+      $rootScope.onLoggedIn(userinfo);
+    });
   }
 
-  $rootScope.onLoggedIn = function(user) {
-    $rootScope.loggedUser = user;
+  $rootScope.onLoggedIn = function(userinfo) {
+    $rootScope.loggedUser = userinfo;
   };
 
   $rootScope.logout = function() {
-    // return AuthService.logout(function() {
-    //   $rootScope.loggedUser = '';
-    //   return $location.path("/login");
-    // });
+    SessionSrvc.logout();
+    $rootScope.loggedUser = null;
+    $location.path("/login");
   };
 
 })

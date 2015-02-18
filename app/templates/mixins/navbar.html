@@ -21,7 +21,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text">{{'LOGGEDAS' | translate}}: <a href="/profile">{{ loggedUser.fullName }}</a></p></li>
+        <li><p class="navbar-text">{{'LOGGEDAS' | translate}}: {{ loggedUser.fullName }}</p></li>
         <li>
           <button type="button" class="btn btn-sm btn-default navbar-btn" ng-click="logout()">
             <span class="glyphicon glyphicon-off"></span> {{'LOGOUT' | translate}}</a>
