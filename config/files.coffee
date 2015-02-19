@@ -24,6 +24,7 @@ module.exports = (lineman) ->
   # Override file patterns here
   js:
     vendor: [
+      "vendor/bower/js-base64/base64.js"
       "vendor/bower/angular/angular.js"
       "vendor/bower/angular-route/angular-route.js"
       "vendor/bower/ngstorage/ngStorage.js"

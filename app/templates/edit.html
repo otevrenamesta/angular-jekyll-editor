@@ -1,0 +1,22 @@
+
+<div class="row fullWidth">
+  <div class="small-12 columns">
+
+    <textarea class="contentEdit" ng-model="content"></textarea>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <label>{{"commit message" | translate}}
+          <input type="text" placeholder="{{'updating'|translate}} {{path}}"
+            ng-model="commitmessage"/>
+        </label>
+      </div>
+    </div>
+
+    <ul class="button-group radius">
+      <li><a href="#" class="button" ng-click="save();" translate>save</a></li>
+      <li><a href="#" class="button">cancel</a></li>
+    </ul>
+
+  </div>
+</div>

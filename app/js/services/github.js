@@ -48,6 +48,26 @@ angular.module("app")
 
         done(null, pages);
       });
+    },
+
+    getContent: function(path, done) {
+      _getRepo().contents(path).read(function(err, content) {
+        if(err) { return done(err); }
+        done(null, content);
+      });
+    },
+
+    saveContent: function(path, content, message, done) {
+      _getRepo().contents(path).fetch().then(function(info) {
+        var config = {
+          message: message,
+          content: Base64.encode(content),
+          sha: info.sha
+        };
+        _getRepo().contents(path).add(config).then(function(newinfo) {
+          done(null, newinfo);
+        });
+      });
     }
 
   };
