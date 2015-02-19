@@ -14,9 +14,7 @@
       <div ng-include src="'mixins/navbar.html'" data-ng-show="!!loggedUser"></div>
     </header>
 
-    <div class="container-fluid">
-      <div id="view" ng-view></div>
-    </div>
+    <div id="view" ng-view></div>
 
     <footer ng-include src="'mixins/footer.html'">
     </footer>
