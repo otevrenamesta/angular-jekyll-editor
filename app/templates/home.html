@@ -5,7 +5,8 @@
   <div class="small-12 columns">
     <ul>
       <li ng-repeat="p in pages">
-        <a href="/page/edit/{{p.name}}">{{ p.name }}</a>
+        <a href="/pages/{{p.name}}">{{ p.name }}</a>
+        <a href="/pages/edit/{{p.name}}" class="button" translate>edit</a>
       </li>
     </ul>
   </div>

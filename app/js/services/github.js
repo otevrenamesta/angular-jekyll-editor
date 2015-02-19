@@ -5,11 +5,11 @@ angular.module("app")
 
   var _octo, _repo;
 
-  // leave only index and folders of pages
-  function _filterRootPages(results) {
+  // leave only folders of pages
+  function _filterPages(results) {
     var rv = [];
     for(var i=0; i<results.length; i++) {
-      if(results[i].name === 'index.md') { rv.push(results[i]); continue; }
+      // if(results[i].name === 'index.md') { rv.push(results[i]); continue; }
       if(results[i].type !== 'dir') { continue; }
       if(results[i].name.indexOf('_') === 0) { continue; } // skip starting _
       if(results[i].name !== 'static') { rv.push(results[i]); }
@@ -40,11 +40,7 @@ angular.module("app")
       _getRepo().contents(path).read(function(err, content) {
         if(err) { return done(err); }
 
-        var pages = JSON.parse(content);
-
-        if(path === '') {
-          pages = _filterRootPages(pages);
-        }
+        var pages = _filterPages(JSON.parse(content));
 
         done(null, pages);
       });

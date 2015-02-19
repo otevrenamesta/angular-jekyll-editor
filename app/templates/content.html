@@ -1,0 +1,18 @@
+<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li><a href="/pages" translate>pages</a></li>
+  <li ng-repat="p in pathparts" ng-show="pathparts.length"><a href="/pages/">{{p}}</a></li>
+  <li class="current">{{folder}}</li>
+</ul>
+
+<div class="row fullWidth">
+  <div class="small-12 columns">
+    <ul>
+      <li ng-show="{{pagepath.length}}"><a href="..">{{'up'|translate}}</a></li>
+      <li ng-repeat="p in pages">
+        <a href="/pages/{{p.name}}">{{ p.name }}</a>
+        <a href="/pages/edit/{{p.name}}" class="button" translate>edit</a>
+      </li>
+    </ul>
+  </div>
+</div>
