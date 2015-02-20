@@ -3,26 +3,51 @@ angular.module("app")
 
 .controller('EditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc) {
 
-  var file = $routeParams.path + '/index.md';
-
-  $scope.path = $routeParams.path;
+  $scope.path = $routeParams.path || '';
+  $scope.add = $location.path().indexOf('add/') === $location.path().length - 4;
+  $scope.action = ($scope.add) ? 'adding' : 'editing';
   $scope.commitmessage = '';
+  $scope.url = '';
 
-  GithubSrvc.getContent(file, function(err, content) {
-    $scope.$apply(function() {
-      $scope.content = content;
-    });
+  var parts = $scope.path.split('/');
+  var parentLink = [];
+
+  $scope.pathparts = {};
+  parts.forEach(function(p) {
+    $scope.pathparts[p] = parentLink.join('/');
+    parentLink.push(p);
   });
 
+  var file = $scope.path + '/index.md';
+
+  if($scope.add) {
+    $scope.content = "";
+  } else {
+    GithubSrvc.getContent(file, function(err, content) {
+      $scope.$apply(function() {
+        $scope.content = content;
+      });
+    });
+  }
+
+
   $scope.save = function() {
-    GithubSrvc.saveContent(file, $scope.content,
-      $scope.commitmessage || 'Updating ' + $routeParams.path,
-      function(err, info) {
+    function _done(err, info) {
       if(err) {
         return alert(err);
       }
       $location.path("/");
-    });
+    }
+
+    if($scope.add) {
+      file = $scope.path + "/" + $scope.url + '/index.md';
+      GithubSrvc.saveContent(file, $scope.content,
+        $scope.commitmessage || 'Adding ' + $routeParams.path, _done);
+    } else {
+      GithubSrvc.updateContent(file, $scope.content,
+        $scope.commitmessage || 'Updating ' + $routeParams.path, _done);
+    }
+
   };
 
 });

@@ -14,14 +14,19 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'HomeCtrl'
   });
 
+  $routeProvider.when('/pages/:path?/edit/', {
+    templateUrl: 'edit.html',
+    controller: 'EditCtrl'
+  });
+
+  $routeProvider.when('/pages/:path?/add/', {
+    templateUrl: 'edit.html',
+    controller: 'EditCtrl'
+  });
+
   $routeProvider.when('/pages/:path?', {
     templateUrl: 'content.html',
     controller: 'ContentCtrl'
-  });
-
-  $routeProvider.when('/pages/edit/:path?', {
-    templateUrl: 'edit.html',
-    controller: 'EditCtrl'
   });
 
   $routeProvider.otherwise({ redirectTo: '/login' });

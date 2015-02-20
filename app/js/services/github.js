@@ -25,6 +25,17 @@ angular.module("app")
     return _repo;
   }
 
+  function _saveContent(path, content, message, sha, done) {
+    var config = {
+      message: message,
+      content: Base64.encode(content),
+    };
+    if(sha) { info.sha = sha; }  // we are updating
+    _getRepo().contents(path).add(config).then(function(newinfo) {
+      done(null, newinfo);
+    });
+  }
+
   return {
 
     login: function(credentials, done) {
@@ -37,6 +48,7 @@ angular.module("app")
     },
 
     listPages: function(path, done) {
+      if(path === '/') { path = ''; }
       _getRepo().contents(path).read(function(err, content) {
         if(err) { return done(err); }
 
@@ -53,17 +65,14 @@ angular.module("app")
       });
     },
 
-    saveContent: function(path, content, message, done) {
+    updateContent: function(path, content, message, done) {
       _getRepo().contents(path).fetch().then(function(info) {
-        var config = {
-          message: message,
-          content: Base64.encode(content),
-          sha: info.sha
-        };
-        _getRepo().contents(path).add(config).then(function(newinfo) {
-          done(null, newinfo);
-        });
+        _saveContent(path, content, message, info.sha, done)
       });
+    },
+
+    saveContent: function(path, content, message, done) {
+      _saveContent(path, content, message, null, done);
     }
 
   };

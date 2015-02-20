@@ -1,8 +1,22 @@
+<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li><a href="/pages" translate>pages</a></li>
+  <li ng-repat="p in pathparts" ng-show="pathparts.length"><a href="/pages/">{{p}}</a></li>
+  <li class="current" translate>{{action}}</li>
+</ul>
 
 <div class="row fullWidth">
   <div class="small-12 columns">
 
     <textarea class="contentEdit" ng-model="content"></textarea>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <label>{{"page url" | translate}}
+          <input type="text" ng-model="url"/>
+        </label>
+      </div>
+    </div>
 
     <div class="row">
       <div class="large-12 columns">
