@@ -1,18 +1,29 @@
 <ul class="breadcrumbs">
   <li><a href="/">Home</a></li>
   <li><a href="/pages" translate>pages</a></li>
-  <li ng-repat="p in pathparts" ng-show="pathparts.length"><a href="/pages/">{{p}}</a></li>
-  <li class="current">{{folder}}</li>
+  <li ng-repeat="(p, parpath) in parents">
+    <a href="/pages/{{parpath}}">{{p}}</a>
+  </li>
+  <li class="current">{{page}}</li>
 </ul>
 
 <div class="row fullWidth">
+
   <div class="small-12 columns">
-    <ul>
-      <li ng-show="{{pagepath.length}}"><a href="..">{{'up'|translate}}</a></li>
-      <li ng-repeat="p in pages">
-        <a href="/pages/{{p.name}}">{{ p.name }}</a>
-        <a href="/pages/edit/{{p.name}}" class="button" translate>edit</a>
-      </li>
-    </ul>
+
+    <h1>{{pagepath}}</h1>
+
+    <a href="/pages/edit{{pagepath}}" class="button" translate>edit this page</a>
+    <a href="/pages/add{{pagepath}}" class="button" translate>add subpage</a>
+    <a href="/pages{{folder}}" ng-show="{{parents.length}}">{{'up'|translate}}</a>
+
+    <h4 translate>subpages</h4>
+    <table ng-show="subpages.length">
+      <tr ng-repeat="sp in subpages">
+        <td><a href="/pages{{pagepath}}/{{sp.name}}">{{ sp.name }}</a></td>
+        <td><a href="/pages/edit{{pagepath}}/{{sp.name}}" class="button tiny" translate>edit</a></td>
+      </tr>
+    </table>
+    <p ng-hide="subpages.length" translate>no subpage</p>
   </div>
 </div>

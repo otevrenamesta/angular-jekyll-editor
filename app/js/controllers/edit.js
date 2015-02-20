@@ -4,8 +4,7 @@ angular.module("app")
 .controller('EditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc) {
 
   $scope.path = $routeParams.path || '';
-  $scope.add = $location.path().indexOf('add/') === $location.path().length - 4;
-  $scope.action = ($scope.add) ? 'adding' : 'editing';
+  $scope.add = $location.path().indexOf('/pages/add/') === 0;
   $scope.commitmessage = '';
   $scope.url = '';
 

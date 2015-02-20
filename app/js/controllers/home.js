@@ -7,7 +7,7 @@ angular.module("app")
 
   GithubSrvc.listPages('', function(err, pages) {
     $scope.$apply(function() {
-      $scope.pages = pages;
+      $scope.subpages = pages;
     });
   });
 
@@ -16,20 +16,25 @@ angular.module("app")
 .controller('ContentCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc) {
 
   $scope.pagepath = $routeParams.path || '';
+  $scope.parents = {};
 
-  var parts = $scope.pagepath.split('/');
+  if($scope.pagepath !== '') {
+    var parts = $scope.pagepath.split('/');
 
-  $scope.folder = parts.pop();
-  $scope.pathparts = {};
-  var parentLink = [];
-  parts.forEach(function(p) {
-    $scope.pathparts[p] = parentLink.join('/');
-    parentLink.push(p);
-  });
+    $scope.pagepath = '/' + $scope.pagepath;
+
+    $scope.page = parts.pop();
+
+    var parentLink = [];
+    parts.forEach(function(p) {
+      parentLink.push(p);
+      $scope.parents[p] = parentLink.join('/');
+    });
+  }
 
   GithubSrvc.listPages($scope.pagepath, function(err, pages) {
     $scope.$apply(function() {
-      $scope.pages = pages;
+      $scope.subpages = pages;
     });
   });
 
