@@ -1,7 +1,7 @@
 
 angular.module("app")
 
-.controller('EditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc) {
+.controller('EditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc) {
 
   $scope.path = $routeParams.path || '';
   $scope.add = $location.path().indexOf('/pages/add/') === 0;
@@ -24,7 +24,9 @@ angular.module("app")
   } else {
     GithubSrvc.getContent(file, function(err, content) {
       $scope.$apply(function() {
-        $scope.content = content;
+        var parsed = JekyllSrvc.parseYamlHeader(content);
+        $scope.content = parsed.content;
+        $scope.header = parsed.header;
       });
     });
   }
