@@ -1,0 +1,52 @@
+<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li><a href="/posts" translate>posts</a></li>
+  <li class="current">{{id}}</li>
+</ul>
+
+<div class="row fullWidth">
+
+  <div class="small-12 large-4 columns">
+    <textarea class="contentEdit" ng-model="content"></textarea>
+  </div>
+
+
+  <div class="small-12 large-4 columns">
+    <div btf-markdown="content"></div>
+  </div>
+
+
+  <div class="small-12 large-4 columns">
+
+    <textarea ng-model="header"></textarea>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <label>{{"page url" | translate}}
+          <input type="text" ng-model="url"/>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <label>{{"commit message" | translate}}
+          <input type="text" placeholder="{{'updating'|translate}} {{path}}"
+            ng-model="commitmessage"/>
+        </label>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row fullWidth">
+  <div class="small-12 large-12 columns">
+
+    <ul class="button-group radius">
+      <li><a href="#" class="button" ng-click="save();" translate>save</a></li>
+      <li><a href="/posts" class="button">cancel</a></li>
+    </ul>
+
+  </div>
+</div>

@@ -44,6 +44,23 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'ContentCtrl'
   });
 
+  // ------------------- POSTS ---------------------
+
+  $routeProvider.when('/posts/add', {
+    templateUrl: 'posts.edit.html',
+    controller: 'PostsEditCtrl'
+  });
+
+  $routeProvider.when('/posts/edit/:id', {
+    templateUrl: 'posts.edit.html',
+    controller: 'PostsEditCtrl'
+  });
+
+  $routeProvider.when('/posts', {
+    templateUrl: 'posts.list.html',
+    controller: 'PostsListCtrl'
+  });
+
   $routeProvider.otherwise({ redirectTo: '/login' });
 
 });

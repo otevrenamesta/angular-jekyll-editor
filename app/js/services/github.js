@@ -73,6 +73,14 @@ angular.module("app")
 
     saveContent: function(path, content, message, done) {
       _saveContent(path, content, message, null, done);
+    },
+
+    listPosts: function(done) {
+      _getRepo().contents('_posts').read(function(err, content) {
+        if(err) { return done(err); }
+
+        done(null, JSON.parse(content));
+      });
     }
 
   };

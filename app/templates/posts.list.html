@@ -1,0 +1,21 @@
+<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li class="current" translate>posts</li>
+</ul>
+
+<div class="row fullWidth">
+
+  <div class="small-12 columns">
+
+    <h1 translate>posts</h1>
+
+    <a href="/posts/add" class="button" translate>add new post</a>
+
+    <table>
+      <tr ng-repeat="p in posts">
+        <td>{{ p.name }}</a></td>
+        <td><a href="/posts/edit/{{p.name}}" class="button tiny" translate>edit</a></td>
+      </tr>
+    </table>
+  </div>
+</div>
