@@ -27,6 +27,7 @@
     "octokat": "~0.4.6",
     "angular-gettext": "~2.0.2",
     "foundation": "~5.5.1",
-    "js-base64": "~2.1.7"
+    "js-base64": "~2.1.7",
+    "angular-markdown-directive": "~0.3.1"
   }
 }
