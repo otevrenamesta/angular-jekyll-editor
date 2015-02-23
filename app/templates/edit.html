@@ -7,30 +7,25 @@
 
 <div class="row fullWidth">
 
-  <div class="small-12 large-4 columns">
+  <div class="small-12 large-6 columns">
+
     <textarea class="contentEdit" ng-model="content"></textarea>
-  </div>
-
-
-  <div class="small-12 large-4 columns">
-    <div btf-markdown="content"></div>
-  </div>
-
-
-  <div class="small-12 large-4 columns">
-
-    <textarea ng-model="header"></textarea>
 
     <div class="row">
       <div class="large-12 columns">
-        <label>{{"page url" | translate}}
-          <input type="text" ng-model="url"/>
-        </label>
+        <label>{{"title" | translate}}</label>
+        <input type="text" ng-model="header.title" />
       </div>
     </div>
 
     <div class="row">
-      <div class="large-12 columns">
+      <div class="large-6 columns">
+        <label>{{"page url" | translate}}
+          <input type="text" ng-disabled="{{add==false}}" ng-model="url"/>
+        </label>
+      </div>
+
+      <div class="large-6 columns">
         <label>{{"commit message" | translate}}
           <input type="text" placeholder="{{'updating'|translate}} {{path}}"
             ng-model="commitmessage"/>
@@ -38,7 +33,27 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="large-12 columns">
+        <label>{{"meta description" | translate}}</label>
+        <textarea ng-model="header.description"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <label>{{"keywords" | translate}}</label>
+        <input type="text" ng-model="header.keywords" />
+      </div>
+    </div>
+
   </div>
+
+
+  <div class="small-12 large-6 columns">
+    <div btf-markdown="content"></div>
+  </div>
+
 </div>
 
 <div class="row fullWidth">

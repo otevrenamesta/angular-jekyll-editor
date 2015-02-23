@@ -6,7 +6,6 @@ angular.module("app")
   $scope.path = $routeParams.path || '';
   $scope.add = $location.path().indexOf('/pages/add/') === 0;
   $scope.commitmessage = '';
-  $scope.url = '';
 
   var parts = $scope.path.split('/');
   var parentLink = [];
@@ -20,13 +19,15 @@ angular.module("app")
   var file = $scope.path + '/index.md';
 
   if($scope.add) {
-    $scope.content = "";
+    $scope.content = '';
+    $scope.url = '';
   } else {
     GithubSrvc.getContent(file, function(err, content) {
       $scope.$apply(function() {
         var parsed = JekyllSrvc.parseYamlHeader(content);
         $scope.content = parsed.content;
         $scope.header = parsed.header;
+        $scope.url = $scope.path;
       });
     });
   }
@@ -41,11 +42,14 @@ angular.module("app")
     }
 
     if($scope.add) {
+      $scope.header.layout = 'default';
       file = $scope.path + "/" + $scope.url + '/index.md';
-      GithubSrvc.saveContent(file, $scope.content,
+      GithubSrvc.saveContent(file,
+        JekyllSrvc.composeHeader($scope.header) + $scope.content,
         $scope.commitmessage || 'Adding ' + $routeParams.path, _done);
     } else {
-      GithubSrvc.updateContent(file, $scope.content,
+      GithubSrvc.updateContent(file,
+        JekyllSrvc.composeHeader($scope.header) + $scope.content,
         $scope.commitmessage || 'Updating ' + $routeParams.path, _done);
     }
 
