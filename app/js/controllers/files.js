@@ -4,6 +4,7 @@ angular.module("app")
 .controller('FilesListCtrl', function($scope, $rootScope, $location, GithubSrvc) {
 
   $scope.files = [];
+  $scope.queue = {};
 
   GithubSrvc.getFiles(null, function(err, results) {
     $scope.$apply(function() {
@@ -11,28 +12,30 @@ angular.module("app")
     });
   });
 
-  $scope.add = function() {
-    var f = document.getElementById('fileChooser').files[0];
+  $scope.upload = function(files) {
 
-    if(! f) { return; }
+    var f;
 
-    var r = new FileReader();
-    r.onloadend = function(e) {
-      var data = e.target.result;
-      data = data.slice(23); // cut the intro: data:text/plain;base64,
+    function _upload() {
+      if(files.length === 0) { return; }
 
-      var file = 'static/media/' + f.name;
-      GithubSrvc.saveRawContent(file, data, 'uploading ' + f.name, function(err, info) {
-        if(err) {
-          return alert(err);
-        }
+      f = files.pop();
+      GithubSrvc.uploadFile(f, function(err, info) {
         $scope.$apply(function() {
+          delete $scope.queue[f.name];
+          if(err) {
+            return alert(err);
+          }
           $scope.files.push(info.content);
         });
+        _upload();
       });
+    }
 
-    };
-    r.readAsDataURL(f);
+    for(var i=0; i<files.length; i++) {
+      $scope.queue[files[i].name] = files[i];
+    }
+    _upload();
   };
 
   $scope.delete = function(f) {

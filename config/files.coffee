@@ -29,6 +29,7 @@ module.exports = (lineman) ->
       "vendor/bower/angular-route/angular-route.js"
       "vendor/bower/ngstorage/ngStorage.js"
       "vendor/bower/angular-gettext/dist/angular-gettext.js"
+      "vendor/bower/ng-file-upload/angular-file-upload.js"
       "vendor/bower/octokat/dist/octokat.js"
       "vendor/bower/angular-sanitize/angular-sanitize.js"
       "vendor/bower/showdown/src/showdown.js"

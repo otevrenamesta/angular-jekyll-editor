@@ -7,9 +7,15 @@
 
   <div class="small-12 large-6 columns">
 
-    <input type='file' id='fileChooser'>
+    <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="true">
+      <i class="fa fa-plus"></i> {{'add new files'|translate}}
+    </div>
 
-    <a href="#" class="button" translate ng-click="add();">add new files</a>
+    <ul>
+      <li ng-repeat="(fname, f) in queue">
+        <i class="fa fa-spinner fa-pulse"></i> {{fname}} ({{f.size}} B)
+      </li>
+    </ul>
 
   </div>
 
@@ -18,7 +24,9 @@
     <table>
       <tr ng-repeat="i in files">
         <td>{{ i.name }}</a></td>
-        <td><a href="#" class="button tiny" translate ng-click="delete(i);">delete</a></td>
+        <td><a href="#" ng-click="delete(i);">
+          <i class="fa fa-trash-o"></i> {{'delete'|translate}}
+        </a></td>
       </tr>
     </table>
     <p ng-hide="files.length" translate>no files yet</p>

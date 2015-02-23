@@ -30,6 +30,8 @@ angular.module("app")
     if(sha) { config.sha = sha; }  // we are updating
     _getRepo().contents(path).add(config).then(function(newinfo) {
       done(null, newinfo);
+    }).then(null, function(e) {
+      done(e);
     });
   }
 
@@ -98,6 +100,19 @@ angular.module("app")
       _getRepo().contents(file.path).remove(config).then(function(newinfo) {
         done(null, newinfo);
       });
+    },
+
+    uploadFile: function(f, done) {
+      var r = new FileReader();
+
+      r.onloadend = function(e) {
+        var data = e.target.result;
+        data = data.slice(data.indexOf('base64,') + 7); // cut the intro
+
+        var fileName = 'static/media/' + f.name;
+        _saveContent(fileName, data, 'uploading ' + f.name, null, done);
+      };
+      r.readAsDataURL(f);
     }
 
   };
