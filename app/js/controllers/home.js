@@ -17,6 +17,7 @@ angular.module("app")
 
   $scope.pagepath = $routeParams.path || '';
   $scope.parents = {};
+  $scope.subpages = null;
 
   if($scope.pagepath !== '') {
     var parts = $scope.pagepath.split('/');

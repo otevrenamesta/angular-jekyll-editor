@@ -17,11 +17,12 @@ module.exports = (lineman) ->
     repo: process.env.REPO || 'piratek/piratek.github.io'
     appId: process.env.APPID || 'angular-jekyll-editor'
 
-  # less:
-  #   options:
-  #     paths: app.less.options.paths.concat([
-  #       "vendor/foundation/css/"
-  #     ])
+  less:
+    options:
+      paths: app.less.options.paths.concat([
+        # "vendor/foundation/css/"
+        "vendor/bower/font-awsome/less/"
+      ])
 
   server:
     pushState: true

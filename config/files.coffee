@@ -10,16 +10,16 @@ To see the default definitions for Lineman's file paths and globs, see:
 module.exports = (lineman) ->
 
   # copy fonts
-  # lineman.config.application.copy.dist.files.push
-  #   expand: true
-  #   cwd: "vendor/bower/bootstrap/fonts"
-  #   src: "**"
-  #   dest: 'dist/fonts'
-  # lineman.config.application.copy.dev.files.push
-  #   expand: true
-  #   cwd: "vendor/bower/bootstrap/fonts"
-  #   src: "**"
-  #   dest: 'generated/fonts'
+  lineman.config.application.copy.dist.files.push
+    expand: true
+    cwd: "vendor/bower/font-awsome/fonts"
+    src: "**"
+    dest: 'dist/fonts'
+  lineman.config.application.copy.dev.files.push
+    expand: true
+    cwd: "vendor/bower/font-awsome/fonts"
+    src: "**"
+    dest: 'generated/fonts'
 
   # Override file patterns here
   js:

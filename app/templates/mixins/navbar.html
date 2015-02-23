@@ -3,20 +3,22 @@
 
   <ul class="title-area">
     <li class="name">
-      <h1><a href="/"> {{'HOME' | translate}}</a></h1>
+      <h1><a href="/"><i class="fa fa-home"></i> {{'HOME' | translate}}</a></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
 
   <section class="top-bar-section">
     <ul>
-      <li><a href="/pages"><span class="glyphicon glyphicon-list-alt"></span> {{'pages'|translate}}</a></li>
-      <li><a href="/posts"><span class="glyphicon glyphicon-magnet"></span> {{'posts'|translate}}</a></li>
-      <li><a href="/files"><span class="glyphicon glyphicon-plane"></span> {{'files'|translate}}</a></li>
+      <li><a href="/pages"><i class="fa fa-folder-open-o"></i> {{'pages'|translate}}</a></li>
+      <li><a href="/posts"><i class="fa fa-files-o"></i> {{'posts'|translate}}</a></li>
+      <li><a href="/files"><i class="fa fa-picture-o"></i> {{'files'|translate}}</a></li>
     </ul>
     <ul class="right">
       <li>
-        <a href="#" class="button" ng-click="logout()">{{'LOGOUT' | translate}} {{ loggedUser.login }}</a>
+        <a href="#" class="button" ng-click="logout()">
+          {{ loggedUser.login }} <i class="fa fa-power-off"></i>
+        </a>
       </li>
     </ul>
   </section>

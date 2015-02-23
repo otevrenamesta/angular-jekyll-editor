@@ -1,5 +1,5 @@
 <ul class="breadcrumbs">
-  <li><a href="/">Home</a></li>
+  <li><a href="/"><i class="fa fa-home"></i></a></li>
   <li class="current" translate>posts</li>
 </ul>
 
@@ -9,12 +9,16 @@
 
     <h1 translate>posts</h1>
 
-    <a href="/posts/add" class="button" translate>add new post</a>
+    <a href="/posts/add" class="button">
+      <i class="fa fa-plus"></i> {{'add new post'|translate}}
+    </a>
 
     <table>
       <tr ng-repeat="p in posts">
         <td>{{ p.name }}</a></td>
-        <td><a href="/posts/edit/{{p.name}}" class="button tiny" translate>edit</a></td>
+        <td><a href="/posts/edit/{{p.name}}">
+          <i class="fa fa-pencil-square-o"></i> {{'edit'|translate}}
+        </a></td>
       </tr>
     </table>
   </div>
