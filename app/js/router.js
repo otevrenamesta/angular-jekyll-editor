@@ -61,6 +61,13 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'PostsListCtrl'
   });
 
+  // ------------------- POSTS ---------------------
+
+  $routeProvider.when('/files', {
+    templateUrl: 'files.list.html',
+    controller: 'FilesListCtrl'
+  });
+
   $routeProvider.otherwise({ redirectTo: '/login' });
 
 });

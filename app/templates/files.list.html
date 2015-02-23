@@ -1,0 +1,28 @@
+<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li class="current" translate>files</li>
+</ul>
+
+<div class="row fullWidth">
+
+  <div class="small-12 large-6 columns">
+
+    <input type='file' id='fileChooser'>
+
+    <a href="#" class="button" translate ng-click="add();">add new files</a>
+
+  </div>
+
+  <div class="small-12 large-6 columns">
+
+    <table>
+      <tr ng-repeat="i in files">
+        <td>{{ i.name }}</a></td>
+        <td><a href="#" class="button tiny" translate ng-click="delete(i);">delete</a></td>
+      </tr>
+    </table>
+    <p ng-hide="files.length" translate>no files yet</p>
+
+  </div>
+
+</div>

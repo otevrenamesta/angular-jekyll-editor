@@ -26,11 +26,8 @@ angular.module("app")
   }
 
   function _saveContent(path, content, message, sha, done) {
-    var config = {
-      message: message,
-      content: Base64.encode(content),
-    };
-    if(sha) { info.sha = sha; }  // we are updating
+    var config = { message: message, content: content };
+    if(sha) { config.sha = sha; }  // we are updating
     _getRepo().contents(path).add(config).then(function(newinfo) {
       done(null, newinfo);
     });
@@ -72,6 +69,10 @@ angular.module("app")
     },
 
     saveContent: function(path, content, message, done) {
+      _saveContent(path, Base64.encode(content), message, null, done);
+    },
+
+    saveRawContent: function(path, content, message, done) {
       _saveContent(path, content, message, null, done);
     },
 
@@ -80,6 +81,22 @@ angular.module("app")
         if(err) { return done(err); }
 
         done(null, JSON.parse(content));
+      });
+    },
+
+    getFiles: function(filter, done) {
+      _getRepo().contents('static/media').read(function(err, content) {
+        if(err) { return done(err); }
+
+        done(null, JSON.parse(content));
+      });
+    },
+
+    deleteFile: function(file, done) {
+      var config = { message: 'Removing media ' + file.name, sha: file.sha };
+
+      _getRepo().contents(file.path).remove(config).then(function(newinfo) {
+        done(null, newinfo);
       });
     }
 
