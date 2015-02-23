@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: app/templates/mixins/navbar.html:6
+msgid "HOME"
+msgstr ""
+
+#: app/templates/mixins/footer.html:2
+msgid "back to top"
+msgstr ""
+
+#: app/templates/mixins/navbar.html:15
+msgid "files"
+msgstr ""
+
+#: app/templates/mixins/navbar.html:13
+msgid "pages"
+msgstr ""
+
+#: app/templates/mixins/navbar.html:14
+msgid "posts"
+msgstr ""

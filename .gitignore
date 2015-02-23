@@ -10,3 +10,5 @@
 /generated
 
 /vendor/bower
+app/js/translations.js
+config/i18n/*.mo

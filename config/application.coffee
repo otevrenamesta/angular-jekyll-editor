@@ -7,6 +7,11 @@ module.exports = (lineman) ->
 
   app = lineman.config.application
 
+  # gettext stuff
+  app.loadNpmTasks.push "grunt-angular-gettext"
+  app.prependTasks.dev.push "nggettext_extract"
+  app.prependTasks.common.push "nggettext_compile"
+
   app.pages.dev.context.env_cfg =
     apiurl: process.env.API_URL || ''
     repo: process.env.REPO || 'piratek/piratek.github.io'
@@ -28,3 +33,13 @@ module.exports = (lineman) ->
     pushState: true
     web:
       port: process.env.PORT || 8000
+
+  nggettext_extract:
+    all:
+      files:
+        'config/i18n/template.pot': ['app/templates/*/*.html']
+
+  nggettext_compile:
+    all:
+      files:
+        'app/js/translations.js': ['config/i18n/*.po']

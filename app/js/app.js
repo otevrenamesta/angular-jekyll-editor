@@ -2,7 +2,7 @@ var app = angular.module("app", [
   "ngRoute", "ngStorage", "gettext", "btford.markdown", "angularFileUpload"
 ])
 
-.run(function($rootScope, $location, GithubSrvc, SessionSrvc) {
+.run(function($rootScope, $location, gettextCatalog, GithubSrvc, SessionSrvc) {
 
   // enumerate routes that don't need authentication
   var routesNoRequiringAuth = ['/login'];
@@ -36,6 +36,8 @@ var app = angular.module("app", [
     $rootScope.loggedUser = null;
     $location.path("/login");
   };
+
+  gettextCatalog.setCurrentLanguage('cs');
 
 })
 

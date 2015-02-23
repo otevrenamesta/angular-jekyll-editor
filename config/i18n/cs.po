@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: cs\n"
+
+#: app/templates/login.html:16
+msgid "Input username"
+msgstr ""
+
+#: app/templates/login.html:28
+msgid "Input your password"
+msgstr ""
+
+#: app/templates/files.list.html:11
+msgid "add new files"
+msgstr ""
+
+#: app/templates/posts.list.html:13
+msgid "add new post"
+msgstr "nový článek"
+
+#: app/templates/content.html:18
+msgid "add subpage"
+msgstr "přidat"
+
+#: app/templates/edit.html:29 app/templates/posts.edit.html:28
+msgid "commit message"
+msgstr "popisek změny"
+
+#: app/templates/home.html:2
+msgid "dashboard"
+msgstr "nástěnka"
+
+#: app/templates/files.list.html:28
+msgid "delete"
+msgstr "smazat"
+
+#: app/templates/content.html:29 app/templates/home.html:9
+#: app/templates/posts.list.html:20
+msgid "edit"
+msgstr "upravit"
+
+#: app/templates/content.html:15
+msgid "edit this page"
+msgstr "upravit tuto stránku"
+
+#: app/templates/files.list.html:3
+msgid "files"
+msgstr "soubory"
+
+#: app/templates/edit.html:45 app/templates/posts.edit.html:44
+msgid "keywords"
+msgstr "klíčová slova"
+
+#: app/templates/login.html:2 app/templates/login.html:40
+msgid "login"
+msgstr "přihlásit"
+
+#: app/templates/edit.html:38 app/templates/posts.edit.html:37
+msgid "meta description"
+msgstr "meta popisek"
+
+#: app/templates/files.list.html:32
+msgid "no files yet"
+msgstr "ještě žádné soubory"
+
+#: app/templates/content.html:33
+msgid "no subpage"
+msgstr "žádné podstránky"
+
+#: app/templates/edit.html:23 app/templates/posts.edit.html:22
+msgid "page url"
+msgstr ""
+
+#: app/templates/content.html:3 app/templates/edit.html:3
+msgid "pages"
+msgstr "stránky"
+
+#: app/templates/login.html:24
+msgid "password"
+msgstr "heslo"
+
+#: app/templates/posts.edit.html:3 app/templates/posts.list.html:10
+#: app/templates/posts.list.html:3
+msgid "posts"
+msgstr "články"
+
+#: app/templates/edit.html:63 app/templates/posts.edit.html:62
+msgid "save"
+msgstr "uložit"
+
+#: app/templates/content.html:24
+msgid "subpages"
+msgstr "podstránky"
+
+#: app/templates/edit.html:16 app/templates/posts.edit.html:15
+msgid "title"
+msgstr "titulek"
+
+#: app/templates/content.html:21
+msgid "up"
+msgstr "nahoru"
+
+#: app/templates/edit.html:30 app/templates/posts.edit.html:29
+msgid "updating"
+msgstr ""
+
+#: app/templates/login.html:12
+msgid "username"
+msgstr "uživatelské jmého"
+
+#: app/templates/edit.html:5
+msgid "{{action}}"
+msgstr ""
