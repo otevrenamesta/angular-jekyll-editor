@@ -35,6 +35,14 @@ angular.module("app")
     });
   }
 
+  function _delete(file, message, done) {
+    var config = { message: message, sha: file.sha };
+
+    _getRepo().contents(file.path).remove(config).then(function(newinfo) {
+      done(null, newinfo);
+    });
+  }
+
   return {
 
     login: function(credentials, done) {
@@ -95,11 +103,11 @@ angular.module("app")
     },
 
     deleteFile: function(file, done) {
-      var config = { message: 'Removing media ' + file.name, sha: file.sha };
+      _delete(file, 'Removing media ' + file.name, done);
+    },
 
-      _getRepo().contents(file.path).remove(config).then(function(newinfo) {
-        done(null, newinfo);
-      });
+    deletePost: function(file, done) {
+      _delete(file, 'Removing post ' + file.name, done);
     },
 
     uploadFile: function(f, done) {

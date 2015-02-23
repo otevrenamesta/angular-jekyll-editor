@@ -7,8 +7,6 @@
 
   <div class="small-12 columns">
 
-    <h1 translate>posts</h1>
-
     <a href="/posts/add" class="button">
       <i class="fa fa-plus"></i> {{'add new post'|translate}}
     </a>
@@ -18,6 +16,9 @@
         <td>{{ p.name }}</a></td>
         <td><a href="/posts/edit/{{p.name}}">
           <i class="fa fa-pencil-square-o"></i> {{'edit'|translate}}
+        </a></td>
+        <td><a href="#" ng-click="delete(p);">
+          <i class="fa fa-trash-o"></i> {{'delete'|translate}}
         </a></td>
       </tr>
     </table>

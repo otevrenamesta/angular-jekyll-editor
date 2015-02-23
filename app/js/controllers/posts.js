@@ -9,6 +9,14 @@ angular.module("app")
     });
   });
 
+  $scope.delete = function(post) {
+    GithubSrvc.deletePost(post, function(err, info) {
+      $scope.$apply(function() {
+        $scope.posts.splice($scope.posts.indexOf(post), 1);
+      });
+    });
+  };
+
 })
 
 .controller('PostsEditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc) {
