@@ -64,7 +64,7 @@ angular.module("app")
 
     updateContent: function(path, content, message, done) {
       _getRepo().contents(path).fetch().then(function(info) {
-        _saveContent(path, content, message, info.sha, done);
+        _saveContent(path, Base64.encode(content), message, info.sha, done);
       });
     },
 
