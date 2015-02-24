@@ -4,21 +4,23 @@
   <li ng-repeat="(p, parpath) in parents">
     <a href="/pages/{{parpath}}">{{p}}</a>
   </li>
-  <li class="current">{{page}}</li>
+  <li class="current" ng-show="page.length">{{page}}</li>
+  <li class="current" ng-hide="page.length">index</li>
+
 </ul>
 
 <div class="row fullWidth">
 
-  <div class="small-12 columns">
+  <div class="small-4 columns">
 
-    <a href="/pages/edit{{pagepath}}" class="button">
+    <a href="/pages/{{parent}}" ng-show="pagepath.length > 0">
+      <i class="fa fa-level-up"></i> {{'up'|translate}}
+    </a>
+    <a href="/pages/edit{{pagepath}}" class="button small">
       <i class="fa fa-pencil-square-o"></i> {{'edit this page'|translate}}
     </a>
-    <a href="/pages/add{{pagepath}}" class="button">
+    <a href="/pages/add{{pagepath}}" class="button small">
       <i class="fa fa-plus"></i> {{'add subpage'|translate}}
-    </a>
-    <a href="/pages{{folder}}" ng-show="{{parents.length}}">
-      <i class="fa fa-level-up"></i> {{'up'|translate}}
     </a>
 
     <h4 translate>subpages</h4>
@@ -33,4 +35,10 @@
     <p ng-hide="subpages.length" translate>no subpage</p>
     <i class="fa fa-spinner fa-pulse" ng-show="subpages==null"></i>
   </div>
+
+  <div class="small-8 columns">
+    <i class="fa fa-spinner fa-pulse" ng-show="content==null"></i>
+    <div btf-markdown="content"></div>
+  </div>
+
 </div>

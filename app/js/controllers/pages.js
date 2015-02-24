@@ -1,11 +1,11 @@
 
 angular.module("app")
 
-.controller('PageContentCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc) {
+.controller('PageContentCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc) {
 
   $scope.pagepath = $routeParams.path || '';
   $scope.parents = {};
-  $scope.subpages = null;
+  $scope.subpages = $scope.content = null;
 
   if($scope.pagepath !== '') {
     var parts = $scope.pagepath.split('/');
@@ -15,15 +15,27 @@ angular.module("app")
     $scope.page = parts.pop();
 
     var parentLink = [];
-    parts.forEach(function(p) {
+    parts.forEach(function(p, idx) {
       parentLink.push(p);
       $scope.parents[p] = parentLink.join('/');
+      if(idx === (parts.length-1)) {
+        $scope.parent = parentLink.join('/');
+      }
     });
   }
 
   GithubSrvc.listPages($scope.pagepath, function(err, pages) {
     $scope.$apply(function() {
       $scope.subpages = pages;
+    });
+  });
+
+  var file = ($scope.pagepath.length) ? $scope.pagepath + '/' : '';
+  file = file + 'index.md';
+  GithubSrvc.getContent(file, function(err, content) {
+    $scope.$apply(function() {
+      var parsed = JekyllSrvc.parseYamlHeader(content);
+      $scope.content = parsed.content;
     });
   });
 
