@@ -80,7 +80,7 @@ angular.module("app")
         return alert(err);
       }
       $scope.$apply(function() {
-        $location.path("/pages/" + $scope.path);
+        $location.path("/pages");
       });
     }
 
@@ -100,8 +100,50 @@ angular.module("app")
   };
 
   $scope.onContentChange = function() {
-    EditorSrvc.onContentChange($scope.content, function(newContent) {
+    EditorSrvc.onContentChange($scope.content, $scope.path, function(newContent) {
       $scope.content = newContent;
+    });
+  };
+
+})
+
+.controller('PageTreeCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc) {
+
+  $scope.treeOptions = {
+    accept: function(sourceNodeScope, destNodesScope, destIndex) {
+      return true;
+    },
+  };
+
+  $scope.ttoggle = function(scope) {
+    scope.toggle();
+  };
+
+  GithubSrvc.listPages('', function(err, rootpages) {
+
+    function _loadNode(n) {
+      GithubSrvc.listPages(n.path, function(err, pages) {
+        $scope.$apply(function() {
+          if(err || pages.length === 0) { n.nodes = []; return; }
+          pages.forEach(function(p) { _loadNode(p); });
+          n.nodes = pages;
+        });
+      });
+    }
+
+    rootpages.forEach(function(p) { _loadNode(p); });
+    $scope.$apply(function() {
+      $scope.pages = [{
+        name: '/', path: '', nodes: rootpages
+      }];
+    });
+  });
+
+  $scope.removeP = function(scope) {
+    GithubSrvc.deletePage(scope.$modelValue.path, function(err, info) {
+      $scope.$apply(function() {
+        scope.$modelValue.parent = 0;
+      });
     });
   };
 

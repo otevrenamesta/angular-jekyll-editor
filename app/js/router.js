@@ -46,6 +46,11 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'PageContentCtrl'
   });
 
+  $routeProvider.when('/pages', {
+    templateUrl: 'pages.tree.html',
+    controller: 'PageTreeCtrl'
+  });
+
   // ------------------- POSTS ---------------------
 
   $routeProvider.when('/posts/add', {

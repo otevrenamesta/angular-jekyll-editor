@@ -1,0 +1,19 @@
+<ul class="breadcrumbs">
+  <li><a href="/"><i class="fa fa-home"></i></a></li>
+  <li><a href="/pages" translate>pages</a></li>
+
+</ul>
+
+<div class="row fullWidth">
+
+  <div class="small-12 large-12 columns">
+
+    <div ui-tree id="tree-root" data-drag-enabled="false">
+      <ul ui-tree-nodes="" ng-model="pages">
+        <li ng-repeat="node in pages" ui-tree-node ng-include="'mixins/nodes_renderer.html'"></li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
