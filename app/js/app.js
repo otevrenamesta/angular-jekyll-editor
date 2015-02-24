@@ -40,7 +40,7 @@ var app = angular.module("app", [
 
   $rootScope.setAttr = function(obj, attr, val) {
     obj[attr] = val;
-  }
+  };
 
   gettextCatalog.setCurrentLanguage('cs');
 
