@@ -44,7 +44,7 @@ angular.module("app")
     parentLink.push(p);
   });
 
-  var file = $scope.path + '/index.md';
+  var file = ($scope.path.length) ? $scope.path + '/index.md' : 'index.md';
 
   if($scope.add) {
     $scope.content = '';
