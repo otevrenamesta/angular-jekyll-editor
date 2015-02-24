@@ -51,7 +51,9 @@ angular.module("app")
       if(err) {
         return alert(err);
       }
-      $location.path("/posts");
+      $scope.$apply(function() {
+        $location.path("/posts");
+      });
     }
 
     $scope.header.layout = $scope.header.layout || 'post';
@@ -61,7 +63,7 @@ angular.module("app")
         JekyllSrvc.composeHeader($scope.header) + $scope.content,
         $scope.commitmessage || 'Updating ' + $scope.id, _done);
     } else {
-      var slug = window.slug($scope.header.title);
+      var slug = window.slug($scope.header.title).toLowerCase();
       var now = new Date();
       var f = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
       file = postFolder + f + "-" + slug + '.md';

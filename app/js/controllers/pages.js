@@ -79,7 +79,9 @@ angular.module("app")
       if(err) {
         return alert(err);
       }
-      $location.path("/");
+      $scope.$apply(function() {
+        $location.path("/pages/" + $scope.path);
+      });
     }
 
     if($scope.add) {
