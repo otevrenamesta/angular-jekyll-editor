@@ -1,0 +1,36 @@
+<div>
+
+  <div class="row">
+
+    <div class="small-12 large-6 columns">
+
+      <label>{{"title" | translate}}</label>
+      <input type="text" ng-model="info.title" />
+
+      <label>{{"link" | translate}}</label>
+      <input type="text" ng-model="info.link" />
+
+      <ul class="button-group radius">
+        <li><a href="#" class="button" ng-click="ok();" ng-disabled="OKdisabled">OK</a></li>
+        <li><a href="#" class="button secondary" ng-click="cancel();">cancel</a></li>
+      </ul>
+
+    </div>
+
+    <div class="small-12 large-6 columns">
+      <h4 translate>external link</h4>
+
+      <h4 translate>pages</h4>
+      <ul>
+        <li ng-repeat="p in subpages">{{p.name}}</li>
+      </ul>
+
+      <h4 translate>posts</h4>
+      <ul>
+        <li ng-repeat="p in posts">{{p}}</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

@@ -29,7 +29,7 @@ angular.module("app")
 
 })
 
-.controller('PageEditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc) {
+.controller('PageEditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc, EditorSrvc) {
 
   $scope.path = $routeParams.path || '';
   $scope.add = $location.path().indexOf('/pages/add/') === 0;
@@ -81,6 +81,12 @@ angular.module("app")
         $scope.commitmessage || 'Updating ' + $routeParams.path, _done);
     }
 
+  };
+
+  $scope.onContentChange = function() {
+    EditorSrvc.onContentChange($scope.content, function(newContent) {
+      $scope.content = newContent;
+    });
   };
 
 });

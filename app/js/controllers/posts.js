@@ -19,7 +19,7 @@ angular.module("app")
 
 })
 
-.controller('PostsEditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc) {
+.controller('PostsEditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc, EditorSrvc) {
 
   $scope.id = $routeParams.id || null;
   $scope.commitmessage = '';
@@ -68,6 +68,12 @@ angular.module("app")
         $scope.commitmessage || 'Adding post' + $scope.url, _done);
     }
 
+  };
+
+  $scope.onContentChange = function() {
+    EditorSrvc.onContentChange($scope.content, function(newContent) {
+      $scope.content = newContent;
+    });
   };
 
 });
