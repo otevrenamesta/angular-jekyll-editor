@@ -19,7 +19,7 @@ angular.module("app")
 
 })
 
-.controller('PostsEditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc, EditorSrvc) {
+.controller('PostsEditCtrl', function($scope, $rootScope, $location, $routeParams, $q, GithubSrvc, JekyllSrvc, EditorSrvc) {
 
   $scope.id = $routeParams.id || null;
   $scope.commitmessage = '';
@@ -34,6 +34,7 @@ angular.module("app")
         var parsed = JekyllSrvc.parseYamlHeader(content);
         if(! parsed.header.category) {
           parsed.header.category = $scope.jekyllCfg.cats[0];
+          parsed.header.tags = parsed.header.tags || [];
         }
         $scope.content = parsed.content;
         $scope.header = parsed.header;
@@ -41,7 +42,7 @@ angular.module("app")
     });
   } else {
     $scope.content = '';
-    $scope.header = { category: $scope.jekyllCfg.cats[0] };
+    $scope.header = { category: $scope.jekyllCfg.cats[0], tags: [] };
   }
 
 
@@ -74,6 +75,16 @@ angular.module("app")
     EditorSrvc.onContentChange($scope.content, function(newContent) {
       $scope.content = newContent;
     });
+  };
+
+  $scope.loadTags = function(query) {
+    var deferred = $q.defer();
+
+    setTimeout(function() {
+      deferred.resolve($scope.jekyllCfg.tags);
+    }, 50);
+
+    return deferred.promise;
   };
 
 });

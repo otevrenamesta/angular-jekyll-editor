@@ -1,6 +1,6 @@
 var app = angular.module("app", [
   "ngRoute", "ngStorage", "gettext", "btford.markdown", "angularFileUpload",
-  "mm.foundation"
+  "mm.foundation", "ngTagsInput"
 ])
 
 .run(function($rootScope, $location, gettextCatalog, GithubSrvc, SessionSrvc) {

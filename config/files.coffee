@@ -31,6 +31,7 @@ module.exports = (lineman) ->
       "vendor/bower/angular-gettext/dist/angular-gettext.js"
       "vendor/bower/ng-file-upload/angular-file-upload.js"
       "vendor/bower/angular-foundation/mm-foundation-tpls.js"
+      "vendor/bower/ng-tags-input/ng-tags-input.js"
       "vendor/bower/octokat/dist/octokat.js"
       "vendor/bower/angular-sanitize/angular-sanitize.js"
       "vendor/bower/showdown/src/showdown.js"
@@ -44,4 +45,5 @@ module.exports = (lineman) ->
   css:
     vendor: [
       "vendor/bower/foundation/css/foundation.css"
+      "vendor/bower/ng-tags-input/ng-tags-input.css"
     ]
