@@ -44,12 +44,13 @@ angular.module("app")
     parentLink.push(p);
   });
 
-  var file = ($scope.path.length) ? $scope.path + '/index.md' : 'index.md';
+  var file = ($scope.path.length) ? $scope.path + '/' : '';
 
   if($scope.add) {
     $scope.content = '';
     $scope.url = '';
   } else {
+    file = file + 'index.md';
     GithubSrvc.getContent(file, function(err, content) {
       $scope.$apply(function() {
         var parsed = JekyllSrvc.parseYamlHeader(content);
@@ -71,7 +72,8 @@ angular.module("app")
 
     if($scope.add) {
       $scope.header.layout = 'default';
-      file = $scope.path + "/" + $scope.url + '/index.md';
+      var slug = window.slug($scope.header.title).toLowerCase();
+      file = file + slug + '/index.md';
       GithubSrvc.saveContent(file,
         JekyllSrvc.composeHeader($scope.header) + $scope.content,
         $scope.commitmessage || 'Adding ' + $routeParams.path, _done);

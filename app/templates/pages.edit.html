@@ -7,63 +7,69 @@
 
 <div class="row fullWidth">
 
-  <div class="small-12 large-6 columns">
+  <div class="small-12 large-5 columns">
 
-    <textarea class="contentEdit" ng-model="content" ng-change="onContentChange();">
-    </textarea>
+    <form name="frm">
 
-    <div class="row">
-      <div class="large-12 columns">
-        <label>{{"title" | translate}}</label>
-        <input type="text" ng-model="header.title" />
+      <textarea class="contentEdit" ng-model="content" ng-change="onContentChange();">
+      </textarea>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <label ng-class="{'error': frm.title.$invalid}">{{"title" | translate}}
+            <input name="title" type="text" ng-model="header.title" required />
+          </label>
+          <small class="error" ng-show="frm.title.$invalid">
+            {{"fill title, please" | translate}}
+          </small>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="large-6 columns">
-        <label>{{"page url" | translate}}
-          <input type="text" ng-disabled="{{add==false}}" ng-model="url"/>
-        </label>
+      <div class="row">
+        <div class="large-12 columns">
+          <label ng-class="{'error': frm.description.$invalid}">{{"meta description" | translate}}
+            <textarea name="description" ng-model="header.description" required>
+            </textarea>
+          </label>
+          <small class="error" ng-show="frm.description.$invalid">
+            {{"fill short (1 - 2 sentences) description of this content, please" | translate}}
+          </small>
+        </div>
       </div>
 
-      <div class="large-6 columns">
-        <label>{{"commit message" | translate}}
-          <input type="text" placeholder="{{'updating'|translate}} {{path}}"
-            ng-model="commitmessage"/>
-        </label>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>{{"keywords" | translate}}</label>
+          <input type="text" ng-model="header.keywords" />
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="large-12 columns">
-        <label>{{"meta description" | translate}}</label>
-        <textarea ng-model="header.description"></textarea>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>{{"commit message" | translate}}
+            <input type="text" placeholder="{{'updating'|translate}} {{path}}"
+              ng-model="commitmessage"/>
+          </label>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="large-12 columns">
-        <label>{{"keywords" | translate}}</label>
-        <input type="text" ng-model="header.keywords" />
+      <div class="row">
+        <div class="large-12 columns">
+          <ul class="button-group radius">
+            <li><a href="#" class="button" ng-disabled="frm.$invalid" ng-click="save();" translate>save</a></li>
+            <li><a href="#" class="button secondary">cancel</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
+
+    </form>
 
   </div>
 
 
-  <div class="small-12 large-6 columns">
+  <div class="small-12 large-7 columns">
     <div btf-markdown="content"></div>
   </div>
 
-</div>
 
-<div class="row fullWidth">
-  <div class="small-12 large-12 columns">
-
-    <ul class="button-group radius">
-      <li><a href="#" class="button" ng-click="save();" translate>save</a></li>
-      <li><a href="#" class="button">cancel</a></li>
-    </ul>
-
-  </div>
 </div>
