@@ -14,34 +14,36 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'HomeCtrl'
   });
 
+  // ------------------- PAGES ---------------------
+
   $routeProvider.when('/pages/edit/:path*', {
-    templateUrl: 'edit.html',
-    controller: 'EditCtrl'
+    templateUrl: 'pages.edit.html',
+    controller: 'PageEditCtrl'
   });
 
   $routeProvider.when('/pages/add/:path*', {
-    templateUrl: 'edit.html',
-    controller: 'EditCtrl'
+    templateUrl: 'pages.edit.html',
+    controller: 'PageEditCtrl'
   });
 
   $routeProvider.when('/pages/add/', {
-    templateUrl: 'edit.html',
-    controller: 'EditCtrl'
+    templateUrl: 'pages.edit.html',
+    controller: 'PageEditCtrl'
   });
 
   $routeProvider.when('/pages/edit/', {
-    templateUrl: 'edit.html',
-    controller: 'EditCtrl'
+    templateUrl: 'pages.edit.html',
+    controller: 'PageEditCtrl'
   });
 
   $routeProvider.when('/pages/:path*', {
-    templateUrl: 'content.html',
-    controller: 'ContentCtrl'
+    templateUrl: 'pages.content.html',
+    controller: 'PageContentCtrl'
   });
 
   $routeProvider.when('/pages', {
-    templateUrl: 'content.html',
-    controller: 'ContentCtrl'
+    templateUrl: 'pages.content.html',
+    controller: 'PageContentCtrl'
   });
 
   // ------------------- POSTS ---------------------
