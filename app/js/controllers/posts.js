@@ -61,9 +61,10 @@ angular.module("app")
         JekyllSrvc.composeHeader($scope.header) + $scope.content,
         $scope.commitmessage || 'Updating ' + $scope.id, _done);
     } else {
+      var slug = window.slug($scope.header.title);
       var now = new Date();
       var f = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
-      file = postFolder + f + "-" + $scope.url + '.md';
+      file = postFolder + f + "-" + slug + '.md';
       GithubSrvc.saveContent(file,
         JekyllSrvc.composeHeader($scope.header) + $scope.content,
         $scope.commitmessage || 'Adding post' + $scope.url, _done);

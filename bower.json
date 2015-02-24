@@ -32,6 +32,7 @@
     "font-awsome": "~4.3.0",
     "ng-file-upload": "~3.0.7",
     "angular-foundation": "~0.5.1",
-    "ng-tags-input": "~2.1.1"
+    "ng-tags-input": "~2.1.1",
+    "slug": "~0.8.0"
   }
 }
