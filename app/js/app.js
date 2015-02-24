@@ -1,5 +1,6 @@
 var app = angular.module("app", [
-  "ngRoute", "ngStorage", "gettext", "btford.markdown", "angularFileUpload"
+  "ngRoute", "ngStorage", "gettext", "btford.markdown", "angularFileUpload",
+  "mm.foundation"
 ])
 
 .run(function($rootScope, $location, gettextCatalog, GithubSrvc, SessionSrvc) {
@@ -36,6 +37,10 @@ var app = angular.module("app", [
     $rootScope.loggedUser = null;
     $location.path("/login");
   };
+
+  $rootScope.setAttr = function(obj, attr, val) {
+    obj[attr] = val;
+  }
 
   gettextCatalog.setCurrentLanguage('cs');
 

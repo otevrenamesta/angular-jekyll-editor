@@ -23,6 +23,7 @@ angular.module("app")
 
   $scope.id = $routeParams.id || null;
   $scope.commitmessage = '';
+  $scope.jekyllCfg = JekyllSrvc.getConfig();
 
   var postFolder = '_posts/';
   var file = postFolder + $scope.id;
@@ -31,30 +32,39 @@ angular.module("app")
     GithubSrvc.getContent(file, function(err, content) {
       $scope.$apply(function() {
         var parsed = JekyllSrvc.parseYamlHeader(content);
+        if(! parsed.header.category) {
+          parsed.header.category = $scope.jekyllCfg.cats[0];
+        }
         $scope.content = parsed.content;
         $scope.header = parsed.header;
       });
     });
   } else {
-    $scope.content = "";
+    $scope.content = '';
+    $scope.header = { category: $scope.jekyllCfg.cats[0] };
   }
+
 
   $scope.save = function() {
     function _done(err, info) {
       if(err) {
         return alert(err);
       }
-      $location.path("/");
+      $location.path("/posts");
     }
 
+    $scope.header.layout = $scope.header.layout || 'post';
+
     if($scope.id) {
-      GithubSrvc.updateContent(file, $scope.content,
+      GithubSrvc.updateContent(file,
+        JekyllSrvc.composeHeader($scope.header) + $scope.content,
         $scope.commitmessage || 'Updating ' + $scope.id, _done);
     } else {
       var now = new Date();
       var f = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
       file = postFolder + f + "-" + $scope.url + '.md';
-      GithubSrvc.saveContent(file, $scope.content,
+      GithubSrvc.saveContent(file,
+        JekyllSrvc.composeHeader($scope.header) + $scope.content,
         $scope.commitmessage || 'Adding post' + $scope.url, _done);
     }
 
