@@ -75,7 +75,7 @@ angular.module("app")
   };
 
   $scope.onContentChange = function() {
-    EditorSrvc.onContentChange($scope.content, function(newContent) {
+    EditorSrvc.onContentChange($scope.content, null, function(newContent) {
       $scope.content = newContent;
     });
   };
