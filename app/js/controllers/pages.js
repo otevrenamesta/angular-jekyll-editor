@@ -107,7 +107,7 @@ angular.module("app")
 
 })
 
-.controller('PageTreeCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc) {
+.controller('PageTreeCtrl', function($scope, $rootScope, $location, $routeParams, $sce, GithubSrvc, JekyllSrvc) {
 
   $scope.treeOptions = {
     accept: function(sourceNodeScope, destNodesScope, destIndex) {
@@ -117,7 +117,10 @@ angular.module("app")
 
   $scope.ttoggle = function(scope) {
     scope.toggle();
+    $scope.frameUrl = $sce.trustAsResourceUrl('http://piratek.github.io/' + scope.$modelValue.path);
   };
+
+  $scope.frameUrl = $sce.trustAsResourceUrl('http://piratek.github.io/');
 
   GithubSrvc.listPages('', function(err, rootpages) {
 

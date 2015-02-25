@@ -6,7 +6,7 @@
 
 <div class="row fullWidth">
 
-  <div class="small-12 large-12 columns">
+  <div class="small-12 large-5 columns">
 
     <div ui-tree id="tree-root" data-drag-enabled="false">
       <ul ui-tree-nodes="" ng-model="pages">
@@ -14,6 +14,10 @@
       </ul>
     </div>
 
+  </div>
+
+  <div class="small-12 large-7 columns">
+    <iframe class="previewiframe" name="preview" ng-src="{{frameUrl}}"></iframe>
   </div>
 
 </div>
