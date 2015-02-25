@@ -1,0 +1,10 @@
+
+<a href="#" data-nodrag ng-click="toggle(this);" ng-dblclick="dblclick(this);">
+  <i class="fa" ng-class="{'fa-file-text-o': node.nodes.length==0, 'fa-folder': collapsed, 'fa-folder-open': !collapsed}"></i> {{node.name}}
+</a>
+
+<ul ui-tree-nodes="" ng-model="node.nodes" ng-class="{hide: collapsed}" data-nodrop>
+  <li ng-repeat="node in node.nodes" ui-tree-node data-collapsed="isCollapsed(this);"
+    ng-include="'mixins/nodes_renderer_select.html'">
+  </li>
+</ul>
