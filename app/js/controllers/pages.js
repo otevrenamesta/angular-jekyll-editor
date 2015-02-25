@@ -142,12 +142,15 @@ angular.module("app")
     });
   });
 
-  $scope.removeP = function(scope) {
-    GithubSrvc.deletePage(scope.$modelValue.path, function(err, info) {
-      $scope.$apply(function() {
-        scope.$modelValue.parent = 0;
+  $scope.removeP = function(nodescope) {
+    if(window.confirm('X-| ' + nodescope.$modelValue.path + ' ?')) {
+      GithubSrvc.deletePage(nodescope.$modelValue, function(err, info) {
+        $scope.$apply(function() {
+          var p = nodescope.$parentNodesScope.$modelValue;
+          p.splice(p.indexOf(nodescope.$modelValue), 1);
+        });
       });
-    });
+    }
   };
 
 });

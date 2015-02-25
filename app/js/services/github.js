@@ -110,6 +110,15 @@ angular.module("app")
       _delete(file, 'Removing post ' + file.name, done);
     },
 
+    deletePage: function(file, done) {
+      if(file.path.length === 0) {return;}
+      var p = file.path + '/index.md';
+      _getRepo().contents(p).fetch(function(err, content) {
+        if(err) { return done(err); }
+        _delete(content, 'Removing page ' + file.name, done);
+      });
+    },
+
     uploadFile: function(f, done) {
       var r = new FileReader();
 
