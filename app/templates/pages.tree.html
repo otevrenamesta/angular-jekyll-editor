@@ -8,7 +8,7 @@
 
   <div class="small-12 large-5 columns">
 
-    <div ui-tree id="tree-root" data-drag-enabled="false">
+    <div ui-tree id="tree-root" class="tree" data-drag-enabled="false">
       <ul ui-tree-nodes="" ng-model="pages">
         <li ng-repeat="node in pages" ui-tree-node ng-include="'mixins/nodes_renderer.html'"></li>
       </ul>
