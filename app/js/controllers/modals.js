@@ -14,30 +14,8 @@ angular.module("app")
 .controller('LinkSelectionCtrl', function($scope, $q, $modalInstance, GithubSrvc, setup) {
 
   $scope.setup = setup;
-  $scope.subpages = [];
-  $scope.posts = [];
   $scope.info = {title: '', link: ''};
   $scope.OKdisabled = true;
-
-  GithubSrvc.listPages('', function(err, rootpages) {
-
-    function _loadNode(n) {
-      GithubSrvc.listPages(n.path, function(err, pages) {
-        $scope.$apply(function() {
-          if(err || pages.length === 0) { n.nodes = []; return; }
-          pages.forEach(function(p) { _loadNode(p); });
-          n.nodes = pages;
-        });
-      });
-    }
-
-    rootpages.forEach(function(p) { _loadNode(p); });
-    $scope.$apply(function() {
-      $scope.pages = [{
-        name: '/', path: '', nodes: rootpages
-      }];
-    });
-  });
 
   $scope.ok = function () {
     if($scope.OKdisabled) { return; }
@@ -77,15 +55,57 @@ angular.module("app")
     $scope.info.link = p + '/';
   };
 
-  GithubSrvc.listPosts(function(err, items) {
-    $scope.$apply(function() {
-      items.forEach(function(i) {
-        var idx = i.name.nthIndexOf('-', 3);
-        var link = i.name.substr(0, idx).split('-');
-        link.push(i.name.slice(idx+1, i.name.length-3));
-        $scope.options.push('/blog/' + link.join('/') + '/');
+  if($scope.setup.prefix === '') { // link
+
+    GithubSrvc.listPages('', function(err, rootpages) {
+
+      function _loadNode(n) {
+        GithubSrvc.listPages(n.path, function(err, pages) {
+          $scope.$apply(function() {
+            if(err || pages.length === 0) { n.nodes = []; return; }
+            pages.forEach(function(p) { _loadNode(p); });
+            n.nodes = pages;
+          });
+        });
+      }
+
+      rootpages.forEach(function(p) { _loadNode(p); });
+      $scope.$apply(function() {
+        $scope.pages = [{
+          name: '/', path: '', nodes: rootpages
+        }];
       });
     });
-  });
+
+    GithubSrvc.listPosts(function(err, items) {
+      $scope.$apply(function() {
+        items.forEach(function(i) {
+          var idx = i.name.nthIndexOf('-', 3);
+          var link = i.name.substr(0, idx).split('-');
+          link.push(i.name.slice(idx+1, i.name.length-3));
+          $scope.options.push('/blog/' + link.join('/') + '/');
+        });
+      });
+    });
+
+  } else { // image link
+
+    GithubSrvc.getFiles('unusedfilter', function(err, items) {
+      $scope.$apply(function() {
+        items.forEach(function(i) {
+          $scope.options.push('/' + i.path);
+        });
+      });
+    });
+
+    $scope.$watch('info.link', function(newValue, oldValue) {
+      if(newValue.indexOf('://') > 0) {
+        $scope.previewUrl = newValue;
+      } else {
+        $scope.previewUrl = 'http://piratek.github.io' + newValue;
+      }
+    });
+
+  }
 
 });

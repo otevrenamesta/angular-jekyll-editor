@@ -20,11 +20,13 @@
 
     <div class="small-12 large-6 columns">
 
-      <div ui-tree id="tree-root" class="tree" data-drag-enabled="false">
+      <div ng-show="pages" ui-tree id="tree-root" class="tree" data-drag-enabled="false">
         <ul ui-tree-nodes="" ng-model="pages">
           <li ng-repeat="node in pages" ui-tree-node ng-include="'mixins/nodes_renderer_select.html'"></li>
         </ul>
       </div>
+
+      <img ng-hide"pages" class="picturePreview" ng-src="{{previewUrl}}" />
 
     </div>
 
