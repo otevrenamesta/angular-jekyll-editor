@@ -1,8 +1,7 @@
 <ul class="breadcrumbs">
   <li><a href="/"><i class="fa fa-home"></i></a></li>
   <li><a href="/pages" translate>pages</a></li>
-  <li ng-repat="p in pathparts" ng-show="pathparts.length"><a href="/pages/">{{p}}</a></li>
-  <li class="current" translate>{{action}}</li>
+  <li class="current">{{'editing page'|translate}}: {{path}}/</li>
 </ul>
 
 <div class="row fullWidth">
