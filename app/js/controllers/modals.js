@@ -1,3 +1,13 @@
+String.prototype.nthIndexOf = function(pattern, n) {
+  var i = -1;
+
+  while (n-- && i++ < this.length) {
+    i = this.indexOf(pattern, i);
+    if (i < 0) { break; }
+  }
+
+  return i;
+};
 
 angular.module("app")
 
@@ -50,10 +60,7 @@ angular.module("app")
     $scope.OKdisabled = ! formOK();
   });
 
-  var protos = [
-    {name: 'http://', path: 'http://'},
-    {name: 'https://', path: 'https://'},
-  ];
+  $scope.options = ['http://', 'https://'];
 
   $scope.isCollapsed = function(scope) {
     return $scope.setup.path.indexOf(scope.$modelValue.path) !== 0;
@@ -70,29 +77,15 @@ angular.module("app")
     $scope.info.link = p + '/';
   };
 
-  $scope.loadOptions = function(query) {
-    var deferred = $q.defer();
-
-    var inputPath = query.split('/');
-    inputPath.pop();
-    inputPath = inputPath.join('/');
-
-    var p;
-
-    if(query.indexOf('/') === 0) {  // load site pages
-      p = inputPath;
-    } else {  // load subpages
-      p = $scope.setup.path + inputPath;
-    }
-
-    GithubSrvc.listPages(p, function(err, items) {
-      items.push(protos[0]);
-      items.push(protos[1]);
-      deferred.resolve(items);
+  GithubSrvc.listPosts(function(err, items) {
+    $scope.$apply(function() {
+      items.forEach(function(i) {
+        var idx = i.name.nthIndexOf('-', 3);
+        var link = i.name.substr(0, idx).split('-');
+        link.push(i.name.slice(idx+1, i.name.length-3));
+        $scope.options.push('/blog/' + link.join('/') + '/');
+      });
     });
-
-    return deferred.promise;
-  };
-
+  });
 
 });
