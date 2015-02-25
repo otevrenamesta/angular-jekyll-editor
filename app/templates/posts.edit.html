@@ -39,15 +39,6 @@
 
       <div class="row">
         <div class="large-12 columns">
-          <label>{{"commit message" | translate}}
-            <input type="text" placeholder="{{'updating'|translate}} {{path}}"
-              ng-model="commitmessage"/>
-          </label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="large-12 columns">
           <label ng-class="{'error': frm.description.$invalid}">{{"meta description" | translate}}
             <textarea name="description" ng-model="header.description" required>
             </textarea>
@@ -68,6 +59,15 @@
               debounce-delay="0" loadOnDownArrow="true" loadOnFocus="true">
             </auto-complete>
           </tags-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <label>{{"commit message" | translate}}
+            <input type="text" placeholder="{{'updating'|translate}} {{path}}"
+              ng-model="commitmessage"/>
+          </label>
         </div>
       </div>
 
