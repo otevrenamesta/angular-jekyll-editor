@@ -1,11 +1,14 @@
 
-<nav class="top-bar" data-topbar role="navigation">
+<nav class="top-bar" data-topbar role="navigation"
+  ng-class="{'expanded': isExpanded}">
 
   <ul class="title-area">
     <li class="name">
       <h1><a href="/"><i class="fa fa-home"></i> {{'HOME' | translate}}</a></h1>
     </li>
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    <li class="toggle-topbar menu-icon">
+      <a href="#" ng-init="isExpanded = false" ng-click="isExpanded = !isExpanded"><span>Menu</span></a>
+    </li>
   </ul>
 
   <section class="top-bar-section">
