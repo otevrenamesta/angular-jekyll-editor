@@ -3,11 +3,11 @@ angular.module("app")
 
 .controller('HomeCtrl', function($scope, $rootScope, $location, GithubSrvc) {
 
-  $scope.pages = [];
+  $scope.events = null;
 
-  GithubSrvc.listPages('', function(err, pages) {
+  GithubSrvc.listRepoEvents(function(err, events) {
     $scope.$apply(function() {
-      $scope.subpages = pages;
+      $scope.events = events;
     });
   });
 

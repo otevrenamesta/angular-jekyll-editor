@@ -130,6 +130,13 @@ angular.module("app")
         _saveContent(fileName, data, 'uploading ' + f.name, null, done);
       };
       r.readAsDataURL(f);
+    },
+
+    listRepoEvents: function(done) {
+      _getRepo().events.fetch(function(err, items) {
+        if(err) { return done(err); }
+        return done(null, items);
+      });
     }
 
   };

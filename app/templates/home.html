@@ -1,13 +1,45 @@
 
-<h1 translate>dashboard</h1>
 
 <div class="row">
   <div class="small-12 columns">
-    <ul>
-      <li ng-repeat="p in pages">
-        <a href="/pages/{{p.name}}">{{ p.name }}</a>
-        <a href="/pages/edit/{{p.name}}" class="button" translate>edit</a>
-      </li>
-    </ul>
+    <h1 translate>dashboard</h1>
   </div>
+</div>
+
+<div class="row">
+  <div class="small-12 large-9 columns">
+    <h3>{{'recent changes'|translate}}</h3>
+    <table>
+      <tr ng-repeat="e in events | limitTo:15">
+        <td><i class="fa" ng-class="{'fa-cloud-upload': e.type=='PushEvent', 'fa-code': e.type!='PushEvent'}"></i></td>
+        <td>{{ e.createdAt | date:'short' }}</td>
+        <td>{{ e.actor.login }}</td>
+        <td>{{ e.payload.commits[0].message }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="small-12 large-3 columns">
+    <h3 translate>{{'pages'|translate}}</h3>
+    <p translate>
+      Pages are organised in tree structure.
+      Edit view allows handle them similarily to files and folders in file explorer.
+
+    </p>
+    <a href="/pages" class="button" translate>edit pages</a>
+
+    <h3 translate>{{'posts'|translate}}</h3>
+    <p translate>
+      Posts are named according creation date and title.
+    </p>
+    <a href="/posts" class="button" translate>edit posts</a>
+
+    <h3 translate>{{'files'|translate}}</h3>
+    <p translate>
+      Media files can be just uploaded or deleted.
+      Everything in common manner.
+    </p>
+    <a href="/files" class="button" translate>upload media</a>
+  </div>
+
 </div>
