@@ -9,14 +9,16 @@ angular.module("app")
 
   $scope.login = function() {
     GithubSrvc.login($scope.credentials, function(err, userinfo) {
-      if (err) {
-        $scope.error = 'Invalid usename or password';
-      } else {
-        var user = angular.copy($scope.credentials, user);
-        SessionSrvc.setCurrentUser(user);
-        $rootScope.onLoggedIn(userinfo);
-        $location.path("/");
-      }
+      $scope.$apply(function() {
+        if (err) {
+          $scope.error = 'Invalid usename or password';
+        } else {
+          var user = angular.copy($scope.credentials, user);
+          SessionSrvc.setCurrentUser(user);
+          $rootScope.onLoggedIn(userinfo);
+          $location.path("/");
+        }
+      });
     });
   };
 
