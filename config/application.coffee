@@ -13,11 +13,13 @@ module.exports = (lineman) ->
   app.prependTasks.common.push "nggettext_compile"
 
   # config
-  app.pages.dev.context.env_cfg = app.pages.dist.context.env_cfg =
+  _cfg =
     apiurl: process.env.API_URL || ''
     repo: process.env.REPO || 'piratek/piratek.github.io'
     siteurl: process.env.SITEURL || 'http://piratek.github.io'
-    appId: process.env.APPID || 'angular-jekyll-editor'
+  _cfg.appId = _cfg.repo.split('/').join('.')  # use the repo for simplicity
+
+  app.pages.dev.context.env_cfg = app.pages.dist.context.env_cfg = _cfg
 
   less:
     options:
