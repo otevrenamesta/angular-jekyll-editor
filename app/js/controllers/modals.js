@@ -11,7 +11,7 @@ String.prototype.nthIndexOf = function(pattern, n) {
 
 angular.module("app")
 
-.controller('LinkSelectionCtrl', function($scope, $q, $modalInstance, GithubSrvc, setup) {
+.controller('LinkSelectionCtrl', function($scope, $q, $modalInstance, GithubSrvc, Conf, setup) {
 
   $scope.setup = setup;
   $scope.info = {title: '', link: ''};
@@ -102,7 +102,7 @@ angular.module("app")
       if(newValue.indexOf('://') > 0) {
         $scope.previewUrl = newValue;
       } else {
-        $scope.previewUrl = 'http://piratek.github.io' + newValue;
+        $scope.previewUrl = Conf.siteurl + newValue;
       }
     });
 

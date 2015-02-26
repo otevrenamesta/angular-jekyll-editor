@@ -12,14 +12,11 @@ module.exports = (lineman) ->
   app.prependTasks.dev.push "nggettext_extract"
   app.prependTasks.common.push "nggettext_compile"
 
-  app.pages.dev.context.env_cfg =
+  # config
+  app.pages.dev.context.env_cfg = app.pages.dist.context.env_cfg =
     apiurl: process.env.API_URL || ''
     repo: process.env.REPO || 'piratek/piratek.github.io'
-    appId: process.env.APPID || 'angular-jekyll-editor'
-
-  app.pages.dist.context.env_cfg =
-    apiurl: process.env.API_URL || ''
-    repo: process.env.REPO || 'piratek/piratek.github.io'
+    siteurl: process.env.SITEURL || 'http://piratek.github.io'
     appId: process.env.APPID || 'angular-jekyll-editor'
 
   less:

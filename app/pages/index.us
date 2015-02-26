@@ -25,6 +25,7 @@
         api: '<%= env_cfg.apiurl %>',
         repo: '<%= env_cfg.repo %>',
         appId: '<%= env_cfg.appId %>',
+        siteurl: '<%= env_cfg.siteurl %>'
       });
     </script>
 
