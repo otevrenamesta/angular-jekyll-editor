@@ -36,16 +36,6 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'PageEditCtrl'
   });
 
-  $routeProvider.when('/pages/:path*', {
-    templateUrl: 'pages.content.html',
-    controller: 'PageContentCtrl'
-  });
-
-  $routeProvider.when('/pages', {
-    templateUrl: 'pages.content.html',
-    controller: 'PageContentCtrl'
-  });
-
   $routeProvider.when('/pages', {
     templateUrl: 'pages.tree.html',
     controller: 'PageTreeCtrl'
