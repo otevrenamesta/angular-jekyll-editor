@@ -46,6 +46,6 @@ module.exports = (lineman) ->
 
   css:
     vendor: [
-      "vendor/bower/foundation/css/foundation.css"
+      # "vendor/bower/foundation/css/foundation.css"
       "vendor/bower/ng-tags-input/ng-tags-input.css"
     ]

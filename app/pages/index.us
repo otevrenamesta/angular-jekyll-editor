@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <base href="/">
     <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
+    <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.0/css/foundation.min.css" ./>
 
   </head>
   <body>
