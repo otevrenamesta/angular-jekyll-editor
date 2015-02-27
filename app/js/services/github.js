@@ -119,14 +119,18 @@ angular.module("app")
       });
     },
 
-    uploadFile: function(f, done) {
+    uploadFile: function(f, category, done) {
       var r = new FileReader();
 
       r.onloadend = function(e) {
         var data = e.target.result;
         data = data.slice(data.indexOf('base64,') + 7); // cut the intro
 
-        var fileName = 'static/media/' + f.name;
+        var fileName = 'static/media/';
+        if(category.length > 0) {
+          fileName = fileName + category + '-';
+        }
+        fileName += f.name;
         _saveContent(fileName, data, 'uploading ' + f.name, null, done);
       };
       r.readAsDataURL(f);

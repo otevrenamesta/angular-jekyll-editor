@@ -1,10 +1,12 @@
 
 angular.module("app")
 
-.controller('FilesListCtrl', function($scope, $rootScope, $location, GithubSrvc) {
+.controller('FilesListCtrl', function($scope, $rootScope, $location, GithubSrvc, JekyllSrvc) {
 
   $scope.files = [];
   $scope.queue = {};
+  $scope.jekyllCfg = JekyllSrvc.getConfig();
+  $scope.attrs = {category: $scope.jekyllCfg.filecats[0]};
 
   GithubSrvc.getFiles(null, function(err, results) {
     $scope.$apply(function() {
@@ -20,7 +22,7 @@ angular.module("app")
       if(files.length === 0) { return; }
 
       f = files.pop();
-      GithubSrvc.uploadFile(f, function(err, info) {
+      GithubSrvc.uploadFile(f, $scope.attrs.category, function(err, info) {
         $scope.$apply(function() {
           delete $scope.queue[f.name];
           if(err) {

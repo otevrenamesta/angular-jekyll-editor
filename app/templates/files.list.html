@@ -11,6 +11,16 @@
       <i class="fa fa-plus"></i> {{'add new files'|translate}}
     </div>
 
+    <label>{{"category" | translate}}</label>
+    <a class="button tiny dropdown" dropdown-toggle="#dropdown-cat">
+      {{attrs.category}}
+    </a>
+    <ul id="dropdown-cat" class="f-dropdown">
+      <li ng-repeat="cat in jekyllCfg.filecats">
+        <a href="#" ng-click="setAttr(attrs, 'category', cat);">{{cat}}</a>
+      </li>
+    </ul>
+
     <ul>
       <li ng-repeat="(fname, f) in queue">
         <i class="fa fa-spinner fa-pulse"></i> {{fname}} ({{f.size}} B)

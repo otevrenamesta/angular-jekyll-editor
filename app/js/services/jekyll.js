@@ -55,7 +55,8 @@ angular.module("app")
         // get config from repo
         _config = {
           'tags': ['tag1', 'tag2', 'tag3'],
-          'cats': ['udalosti', 'smlouvy', 'zapisy', 'clanky']
+          'cats': ['udalosti', 'smlouvy', 'zapisy', 'clanky'],
+          'filecats': ['smlouvy', 'zaznamy', 'vykresy', 'cojavim']
         };
       }
       return _config;
