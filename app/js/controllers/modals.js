@@ -41,7 +41,11 @@ angular.module("app")
   $scope.options = ['http://', 'https://'];
 
   $scope.isCollapsed = function(scope) {
-    return $scope.setup.path.indexOf(scope.$modelValue.path) !== 0;
+    if($scope.setup.path) {
+      return $scope.setup.path.indexOf(scope.$modelValue.path) !== 0;
+    } else {
+      return false;
+    }
   };
 
   $scope.dblclick = function(nodescope) {
