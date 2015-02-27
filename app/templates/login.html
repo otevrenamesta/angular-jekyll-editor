@@ -29,7 +29,7 @@
           required autofocus ng-model="credentials.username">
 
         <div class="error-container" ng-show="loginfrm.uname.$dirty && loginfrm.uname.$invalid">
-          <small class="error" ng-show="loginfrm.uname.$error.required" translate>
+          <small class="error" ng-show="loginfrm.uname.$error.required">
             {{'Input username'|translate}}
           </small>
         </div>
@@ -41,14 +41,14 @@
           required ng-model="credentials.password">
 
         <div class="error-container" ng-show="loginfrm.passwd.$dirty && loginfrm.passwd.$invalid">
-          <small class="error" ng-show="loginfrm.passwd.$error.required" translate>
+          <small class="error" ng-show="loginfrm.passwd.$error.required">
             {{'Input your password'|translate}}
           </small>
         </div>
       </div>
 
       <div data-ng-show="error" data-alert class="alert-box warning round" role="alert">
-        {{ error }}. <a href="https://github.com/password_reset" translate>Forgot your password?</a>
+        {{ error }}. <a href="https://github.com/password_reset">Forgot your password?</a>
         <a href="#" class="close">&times;</a>
       </div>
 
