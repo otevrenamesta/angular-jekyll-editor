@@ -8,8 +8,10 @@
       <input type="text" ng-model="info.title" />
 
       <label>{{"link" | translate}}</label>
-      <input type="text" ng-model="info.link"
-        typeahead="o for o in options | filter:$viewValue" />
+      <div class="typeahead">
+        <input type="text" ng-model="info.link"
+          typeahead="o for o in options | filter:$viewValue" />
+      </div>
 
       <ul class="button-group radius">
         <li><a href="#" class="button" ng-click="ok();" ng-disabled="OKdisabled">OK</a></li>
