@@ -21,7 +21,7 @@
 
   <div class="small-12 large-6 columns">
 
-    <form class="form-signin" data-ng-submit="login();" name="loginfrm" role="form">
+    <form data-ng-submit="login();" name="loginfrm" role="form">
 
       <div class="form-group">
         <input type="text" name="uname" class="form-control"
@@ -29,8 +29,8 @@
           required autofocus ng-model="credentials.username">
 
         <div class="error-container" ng-show="loginfrm.uname.$dirty && loginfrm.uname.$invalid">
-          <small class="text-danger" ng-show="loginfrm.uname.$error.required" translate>
-            Input username
+          <small class="error" ng-show="loginfrm.uname.$error.required" translate>
+            {{'Input username'|translate}}
           </small>
         </div>
       </div>
@@ -41,21 +41,20 @@
           required ng-model="credentials.password">
 
         <div class="error-container" ng-show="loginfrm.passwd.$dirty && loginfrm.passwd.$invalid">
-          <small class="text-danger" ng-show="loginfrm.passwd.$error.required" translate>
-            Input your password
+          <small class="error" ng-show="loginfrm.passwd.$error.required" translate>
+            {{'Input your password'|translate}}
           </small>
         </div>
       </div>
 
-      <div data-ng-show="error" class="alert alert-danger" role="alert">
-        {{ error }}. <a href="https://github.com/password_reset">Forgot your password?</a>
+      <div data-ng-show="error" data-alert class="alert-box warning round" role="alert">
+        {{ error }}. <a href="https://github.com/password_reset" translate>Forgot your password?</a>
+        <a href="#" class="close">&times;</a>
       </div>
 
-      <div class="form-group">
-        <button class="btn btn-primary">
-          <span class="glyphicon glyphicon-user"></span> {{'login'|translate}}
-        </button>
-      </div>
+      <button class="button">
+        <i class="fa fa-sign-in"></i> {{'login'|translate}}
+      </button>
 
     </form>
 
