@@ -36,7 +36,7 @@ module.exports = (lineman) ->
   nggettext_extract:
     all:
       files:
-        'config/i18n/template.pot': ['app/templates/*/*.html']
+        'config/i18n/template.pot': ['app/templates/**/*.html']
 
   nggettext_compile:
     all:
