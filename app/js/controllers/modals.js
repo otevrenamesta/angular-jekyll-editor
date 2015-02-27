@@ -82,12 +82,17 @@ angular.module("app")
     });
 
     GithubSrvc.listPosts(function(err, items) {
-      $scope.$apply(function() {
-        items.forEach(function(i) {
-          var idx = i.name.nthIndexOf('-', 3);
-          var link = i.name.substr(0, idx).split('-');
-          link.push(i.name.slice(idx+1, i.name.length-3));
-          $scope.options.push('/blog/' + link.join('/') + '/');
+      for(var i=0; i<items.length; i++) {
+        var idx = items[i].name.nthIndexOf('-', 3);
+        var link = items[i].name.substr(0, idx).split('-');
+        link.push(items[i].name.slice(idx+1, items[i].name.length-3));
+        $scope.options.push('/blog/' + link.join('/') + '/');
+      };
+      GithubSrvc.getFiles('unusedfilter', function(err, items) {
+        $scope.$apply(function() {
+          items.forEach(function(i) {
+            $scope.options.push('/' + i.path);
+          });
         });
       });
     });
