@@ -4,22 +4,180 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: app/templates/mixins/navbar.html:6
+#: app/templates/mixins/navbar.html:7
 msgid "HOME"
 msgstr ""
 
-#: app/templates/mixins/footer.html:2
+#: app/templates/login.html:33
+msgid "Input username"
+msgstr ""
+
+#: app/templates/login.html:45
+msgid "Input your password"
+msgstr ""
+
+#: app/templates/home.html:38
+msgid ""
+"Media files can be just uploaded or deleted.\n"
+"      Everything in common manner."
+msgstr ""
+
+#: app/templates/home.html:24
+msgid ""
+"Pages are organised in tree structure.\n"
+"      Edit view allows handle them similarily to files and folders in file explorer."
+msgstr ""
+
+#: app/templates/home.html:32
+msgid "Posts are named according creation date and title."
+msgstr ""
+
+#: app/templates/login.html:14
+msgid ""
+"You need authenticate prior to administrate.\n"
+"      Please use credetials of your github account,\n"
+"      that has access to {{conf.repo}} repository."
+msgstr ""
+
+#: app/templates/files.list.html:11
+msgid "add new files"
+msgstr ""
+
+#: app/templates/posts.list.html:11
+msgid "add new post"
+msgstr ""
+
+#: app/templates/posts.edit.html:56
+msgid "add reasonable tags"
+msgstr ""
+
+#: app/templates/login.html:4
+msgid "administration of"
+msgstr ""
+
+#: app/templates/mixins/footer.html:6
 msgid "back to top"
 msgstr ""
 
-#: app/templates/mixins/navbar.html:15
+#: app/templates/files.list.html:14
+#: app/templates/posts.edit.html:27
+msgid "category"
+msgstr ""
+
+#: app/templates/pages.edit.html:48
+#: app/templates/posts.edit.html:67
+msgid "commit message"
+msgstr ""
+
+#: app/templates/home.html:5
+msgid "dashboard"
+msgstr ""
+
+#: app/templates/files.list.html:38
+#: app/templates/posts.list.html:21
+msgid "delete"
+msgstr ""
+
+#: app/templates/posts.list.html:18
+msgid "edit"
+msgstr ""
+
+#: app/templates/home.html:29
+msgid "edit pages"
+msgstr ""
+
+#: app/templates/home.html:35
+msgid "edit posts"
+msgstr ""
+
+#: app/templates/pages.edit.html:4
+msgid "editing page"
+msgstr ""
+
+#: app/templates/files.list.html:3
+#: app/templates/home.html:37
+#: app/templates/mixins/navbar.html:18
 msgid "files"
 msgstr ""
 
-#: app/templates/mixins/navbar.html:13
+#: app/templates/pages.edit.html:34
+#: app/templates/posts.edit.html:47
+msgid "fill short (1 - 2 sentences) description of this content, please"
+msgstr ""
+
+#: app/templates/pages.edit.html:22
+#: app/templates/posts.edit.html:22
+msgid "fill title, please"
+msgstr ""
+
+#: app/templates/pages.edit.html:41
+msgid "keywords"
+msgstr ""
+
+#: app/templates/modal.linkselect.html:10
+msgid "link"
+msgstr ""
+
+#: app/templates/login.html:12
+#: app/templates/login.html:56
+msgid "login"
+msgstr ""
+
+#: app/templates/pages.edit.html:29
+#: app/templates/posts.edit.html:42
+msgid "meta description"
+msgstr ""
+
+#: app/templates/files.list.html:42
+msgid "no files yet"
+msgstr ""
+
+#: app/templates/home.html:23
+#: app/templates/mixins/navbar.html:16
+#: app/templates/pages.edit.html:3
+#: app/templates/pages.tree.html:3
 msgid "pages"
 msgstr ""
 
-#: app/templates/mixins/navbar.html:14
+#: app/templates/login.html:40
+msgid "password"
+msgstr ""
+
+#: app/templates/home.html:31
+#: app/templates/mixins/navbar.html:17
+#: app/templates/posts.edit.html:3
+#: app/templates/posts.list.html:3
 msgid "posts"
+msgstr ""
+
+#: app/templates/home.html:11
+msgid "recent changes"
+msgstr ""
+
+#: app/templates/pages.edit.html:58
+#: app/templates/posts.edit.html:78
+msgid "save"
+msgstr ""
+
+#: app/templates/posts.edit.html:54
+msgid "tags"
+msgstr ""
+
+#: app/templates/modal.linkselect.html:7
+#: app/templates/pages.edit.html:18
+#: app/templates/posts.edit.html:18
+msgid "title"
+msgstr ""
+
+#: app/templates/pages.edit.html:49
+#: app/templates/posts.edit.html:68
+msgid "updating"
+msgstr ""
+
+#: app/templates/home.html:42
+msgid "upload media"
+msgstr ""
+
+#: app/templates/login.html:28
+msgid "username"
 msgstr ""
