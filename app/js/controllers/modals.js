@@ -87,7 +87,7 @@ angular.module("app")
         var link = items[i].name.substr(0, idx).split('-');
         link.push(items[i].name.slice(idx+1, items[i].name.length-3));
         $scope.options.push('/blog/' + link.join('/') + '/');
-      };
+      }
       GithubSrvc.getFiles('unusedfilter', function(err, items) {
         $scope.$apply(function() {
           items.forEach(function(i) {
