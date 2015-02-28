@@ -5,12 +5,15 @@ angular.module("app")
 
   $scope.files = [];
   $scope.queue = {};
-  $scope.jekyllCfg = JekyllSrvc.getConfig();
-  $scope.attrs = {category: $scope.jekyllCfg.filecats[0]};
+
+  JekyllSrvc.init().then(function() {
+    $scope.jekyllCfg = JekyllSrvc.getConfig();
+    $scope.attrs = {category: $scope.jekyllCfg.filecats[0]};
+  });
 
   GithubSrvc.getFiles(null, function(err, results) {
     $scope.$apply(function() {
-      $scope.files = results;
+      $scope.files = results || [];
     });
   });
 

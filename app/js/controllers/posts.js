@@ -23,28 +23,31 @@ angular.module("app")
 
   $scope.id = $routeParams.id || null;
   $scope.commitmessage = '';
-  $scope.jekyllCfg = JekyllSrvc.getConfig();
+
+  JekyllSrvc.init().then(function() {
+    $scope.jekyllCfg = JekyllSrvc.getConfig();
+
+    if($scope.id) {
+      GithubSrvc.getContent(file, function(err, content) {
+        $scope.$apply(function() {
+          var parsed = JekyllSrvc.parseYamlHeader(content);
+          if(! parsed.header.category) {
+            parsed.header.category = $scope.jekyllCfg.cats[0];
+            parsed.header.tags = parsed.header.tags || [];
+          }
+          $scope.content = parsed.content;
+          $scope.header = parsed.header;
+        });
+      });
+    } else {
+      $scope.content = '';
+      $scope.header = { category: $scope.jekyllCfg.cats[0], tags: [] };
+    }
+
+  });
 
   var postFolder = '_posts/';
   var file = postFolder + $scope.id;
-
-  if($scope.id) {
-    GithubSrvc.getContent(file, function(err, content) {
-      $scope.$apply(function() {
-        var parsed = JekyllSrvc.parseYamlHeader(content);
-        if(! parsed.header.category) {
-          parsed.header.category = $scope.jekyllCfg.cats[0];
-          parsed.header.tags = parsed.header.tags || [];
-        }
-        $scope.content = parsed.content;
-        $scope.header = parsed.header;
-      });
-    });
-  } else {
-    $scope.content = '';
-    $scope.header = { category: $scope.jekyllCfg.cats[0], tags: [] };
-  }
-
 
   $scope.save = function() {
     function _done(err, info) {

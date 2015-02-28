@@ -1,7 +1,7 @@
 
 angular.module("app")
 
-.factory('JekyllSrvc', function($http, $window, Conf) {
+.factory('JekyllSrvc', function($http, $window, $q, Conf, GithubSrvc) {
 
   var _config = null;
 
@@ -13,7 +13,32 @@ angular.module("app")
     return rv.join(',');
   }
 
+  function _initCfg(promise) {
+    // get config from repo
+    var line, parts, c;
+    var rv = {};
+    GithubSrvc.getContent('_config.yml', function(err, cfg) {
+      var lines = cfg.split('\n');
+      for(var i=0; i<lines.length; i++) {
+        line = lines[i];
+        if(line.indexOf('avail_') === 0) {
+          parts = line.split(':');
+          rv[parts[0].slice(6)] = parts[1].split(',');
+        }
+      }
+      _config = rv;
+      promise.resolve();
+    });
+  }
+
+  var deferred = $q.defer();
+  _initCfg(deferred);
+
   return {
+
+    init: function() {
+      return deferred.promise;
+    },
 
     parseYamlHeader: function(contents, done) {
       var mark1 = contents.indexOf('---') + 3;
@@ -51,14 +76,6 @@ angular.module("app")
     },
 
     getConfig: function() {
-      if(_config === null) {
-        // get config from repo
-        _config = {
-          'tags': ['tag1', 'tag2', 'tag3'],
-          'cats': ['udalosti', 'smlouvy', 'zapisy', 'clanky'],
-          'filecats': ['smlouvy', 'zaznamy', 'vykresy', 'cojavim']
-        };
-      }
       return _config;
     }
 
