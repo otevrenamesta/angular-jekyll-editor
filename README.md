@@ -31,7 +31,7 @@ Dependencies are [node.js](https://nodejs.org/) and its package manager [npm](ht
 You can try if you have them with this command:
 
 ```
-node-v && npm -v && echo 'OK, I have them ...'
+node -v && npm -v && echo 'OK, I have them ...'
 ```
 
 If no, the most convinient way is use [nvm](https://github.com/creationix/nvm).
