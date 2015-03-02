@@ -1,7 +1,9 @@
 
 angular.module("app")
 
-.controller('FilesListCtrl', function($scope, $rootScope, $location, GithubSrvc, JekyllSrvc) {
+.controller('FilesListCtrl', [
+'$scope', '$rootScope', '$location', 'GithubSrvc', 'JekyllSrvc',
+function($scope, $rootScope, $location, GithubSrvc, JekyllSrvc) {
 
   $scope.files = [];
   $scope.queue = {};
@@ -51,4 +53,4 @@ angular.module("app")
     });
   };
 
-});
+}]);
