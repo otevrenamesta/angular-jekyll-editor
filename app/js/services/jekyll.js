@@ -1,7 +1,9 @@
 
 angular.module("app")
 
-.factory('JekyllSrvc', function($http, $window, $q, Conf, GithubSrvc) {
+.factory('JekyllSrvc', [
+'$http', '$window', '$q', 'Conf', 'GithubSrvc',
+function($http, $window, $q, Conf, GithubSrvc) {
 
   var _config = null;
 
@@ -81,4 +83,4 @@ angular.module("app")
 
   };
 
-});
+}]);

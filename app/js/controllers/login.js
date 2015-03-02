@@ -1,7 +1,9 @@
 
 angular.module("app")
 
-.controller('LoginCtrl', function($scope, $rootScope, $location, GithubSrvc, SessionSrvc, Conf) {
+.controller('LoginCtrl', [
+'$scope', '$rootScope', '$location', 'GithubSrvc', 'SessionSrvc', 'Conf',
+function($scope, $rootScope, $location, GithubSrvc, SessionSrvc, Conf) {
 
   $scope.credentials = { username: "", password: "" };
   $scope.error = null;
@@ -22,4 +24,4 @@ angular.module("app")
     });
   };
 
-});
+}]);

@@ -1,7 +1,9 @@
 
 angular.module("app")
 
-.factory('GithubSrvc', function($http, $window, Conf) {
+.factory('GithubSrvc', [
+'$http', '$window', 'Conf',
+function($http, $window, Conf) {
 
   var _octo, _repo;
 
@@ -145,4 +147,4 @@ angular.module("app")
 
   };
 
-});
+}]);

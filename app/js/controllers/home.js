@@ -1,7 +1,9 @@
 
 angular.module("app")
 
-.controller('HomeCtrl', function($scope, $rootScope, $location, GithubSrvc) {
+.controller('HomeCtrl', [
+'$scope', '$rootScope', '$location', 'GithubSrvc',
+function($scope, $rootScope, $location, GithubSrvc) {
 
   $scope.events = null;
 
@@ -11,4 +13,4 @@ angular.module("app")
     });
   });
 
-});
+}]);

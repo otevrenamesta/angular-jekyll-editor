@@ -52,8 +52,6 @@ export REPO=piratek/piratek.github.io
 export SITEURL=http://www.mysuperjekyllsite.com
 lineman build
 # now you have all files in dist folder
-# NOTE: currently js uglification is broken so you need copy unuglified files:
-# cp -r generated/js dist
 ```
 
 Then you can upload them to FTP storage or wherever they are served as static files.

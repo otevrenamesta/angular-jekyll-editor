@@ -1,7 +1,9 @@
 
 angular.module("app")
 
-.factory('SessionSrvc', function($localStorage, $location, Conf) {
+.factory('SessionSrvc', [
+'$localStorage', '$location', 'Conf',
+function($localStorage, $location, Conf) {
 
   var _cuKey = $location.host() + $location.port() + Conf.appId + 'currentUser';
 
@@ -23,4 +25,4 @@ angular.module("app")
     }
   };
 
-});
+}]);

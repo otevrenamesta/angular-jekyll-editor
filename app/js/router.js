@@ -1,4 +1,8 @@
-angular.module("app").config(function($routeProvider, $locationProvider) {
+angular.module("app")
+
+.config([
+'$routeProvider', '$locationProvider',
+function($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 
@@ -67,4 +71,4 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
 
   $routeProvider.otherwise({ redirectTo: '/login' });
 
-});
+}]);

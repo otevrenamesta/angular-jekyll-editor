@@ -1,7 +1,7 @@
 
 angular.module("app")
 
-.factory('EditorSrvc', function($http, $modal) {
+.factory('EditorSrvc', ['$http', '$modal', function($http, $modal) {
 
   function _openDialog(prefix, path, done) {
 
@@ -46,4 +46,4 @@ angular.module("app")
 
   };
 
-});
+}]);

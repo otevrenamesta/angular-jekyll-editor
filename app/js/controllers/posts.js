@@ -1,7 +1,9 @@
 
 angular.module("app")
 
-.controller('PostsListCtrl', function($scope, $rootScope, $location, GithubSrvc) {
+.controller('PostsListCtrl', [
+'$scope', '$rootScope', '$location', 'GithubSrvc',
+function($scope, $rootScope, $location, GithubSrvc) {
 
   GithubSrvc.listPosts(function(err, posts) {
     $scope.$apply(function() {
@@ -17,9 +19,11 @@ angular.module("app")
     });
   };
 
-})
+}])
 
-.controller('PostsEditCtrl', function($scope, $rootScope, $location, $routeParams, $q, GithubSrvc, JekyllSrvc, EditorSrvc) {
+.controller('PostsEditCtrl', [
+'$scope', '$rootScope', '$location', '$routeParams', '$q', 'GithubSrvc', 'JekyllSrvc', 'EditorSrvc',
+function($scope, $rootScope, $location, $routeParams, $q, GithubSrvc, JekyllSrvc, EditorSrvc) {
 
   $scope.id = $routeParams.id || null;
   $scope.commitmessage = '';
@@ -93,4 +97,4 @@ angular.module("app")
     return deferred.promise;
   };
 
-});
+}]);

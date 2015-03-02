@@ -1,7 +1,9 @@
 
 angular.module("app")
 
-.controller('PageEditCtrl', function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc, EditorSrvc) {
+.controller('PageEditCtrl', [
+'$scope', '$rootScope', '$location', '$routeParams', 'GithubSrvc', 'JekyllSrvc', 'EditorSrvc',
+function($scope, $rootScope, $location, $routeParams, GithubSrvc, JekyllSrvc, EditorSrvc) {
 
   $scope.path = $routeParams.path || '';
   $scope.add = $location.path().indexOf('/pages/add/') === 0;
@@ -54,9 +56,11 @@ angular.module("app")
     });
   };
 
-})
+}])
 
-.controller('PageTreeCtrl', function($scope, $rootScope, $location, $routeParams, $sce, GithubSrvc, JekyllSrvc, Conf) {
+.controller('PageTreeCtrl', [
+'$scope', '$rootScope', '$location', '$routeParams', '$sce', 'GithubSrvc', 'JekyllSrvc', 'Conf',
+function($scope, $rootScope, $location, $routeParams, $sce, GithubSrvc, JekyllSrvc, Conf) {
 
   $scope.treeOptions = {
     accept: function(sourceNodeScope, destNodesScope, destIndex) {
@@ -102,4 +106,4 @@ angular.module("app")
     }
   };
 
-});
+}]);

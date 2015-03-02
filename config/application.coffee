@@ -28,6 +28,10 @@ module.exports = (lineman) ->
         "vendor/bower/font-awsome/less/"
       ])
 
+  uglify:
+    options:
+      mangle: false
+
   server:
     pushState: true
     web:

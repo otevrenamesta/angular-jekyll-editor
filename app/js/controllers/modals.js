@@ -11,7 +11,9 @@ String.prototype.nthIndexOf = function(pattern, n) {
 
 angular.module("app")
 
-.controller('LinkSelectionCtrl', function($scope, $q, $modalInstance, GithubSrvc, Conf, setup) {
+.controller('LinkSelectionCtrl', [
+'$scope', '$q', '$modalInstance', 'GithubSrvc', 'Conf', 'setup',
+function($scope, $q, $modalInstance, GithubSrvc, Conf, setup) {
 
   $scope.setup = setup;
   $scope.info = {title: '', link: ''};
@@ -117,4 +119,4 @@ angular.module("app")
 
   }
 
-});
+}]);

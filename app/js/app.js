@@ -3,7 +3,7 @@ var app = angular.module("app", [
   "mm.foundation", "ngTagsInput", "ui.tree"
 ])
 
-.run(function($rootScope, $location, gettextCatalog, GithubSrvc, SessionSrvc) {
+.run(['$rootScope', '$location', 'gettextCatalog', 'GithubSrvc', 'SessionSrvc', function($rootScope, $location, gettextCatalog, GithubSrvc, SessionSrvc) {
 
   // enumerate routes that don't need authentication
   var routesNoRequiringAuth = ['/login'];
@@ -44,11 +44,11 @@ var app = angular.module("app", [
 
   gettextCatalog.setCurrentLanguage('cs');
 
-})
+}])
 
 // automatic redirect to login page when 401 from REST service
 // inject authorization header into outgoing reqs
-.config(function($httpProvider) {
+.config(['$httpProvider', function($httpProvider) {
 
   $httpProvider.interceptors.push(function($q, $rootScope, SessionSrvc) {
     return {
@@ -69,4 +69,4 @@ var app = angular.module("app", [
     };
   });
 
-});
+}]);
