@@ -9,7 +9,6 @@ module.exports = (lineman) ->
 
   # gettext stuff
   app.loadNpmTasks.push "grunt-angular-gettext"
-  app.prependTasks.dev.push "nggettext_extract"
   app.prependTasks.common.push "nggettext_compile"
 
   # config
