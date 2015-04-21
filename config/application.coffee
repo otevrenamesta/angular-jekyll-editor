@@ -9,15 +9,17 @@ module.exports = (lineman) ->
 
   # gettext stuff
   app.loadNpmTasks.push "grunt-angular-gettext"
-  app.prependTasks.dev.push "nggettext_extract"
   app.prependTasks.common.push "nggettext_compile"
 
   # config
+  _defaultrepos = [
+    {site: 'http://piratek.github.io', repo: 'piratek/piratek.github.io'}
+    {site: 'http://tabor.pirati.cz', repo: 'pirati-web/tabor.pirati.cz'}
+  ]
+
   _cfg =
     apiurl: process.env.API_URL || ''
-    repo: process.env.REPO || 'piratek/piratek.github.io'
-    siteurl: process.env.SITEURL || 'http://piratek.github.io'
-  _cfg.appId = _cfg.repo.split('/').join('.')  # use the repo for simplicity
+    repos: process.env.REPOS || JSON.stringify(_defaultrepos)
 
   app.pages.dev.context.env_cfg = app.pages.dist.context.env_cfg = _cfg
 

@@ -2,10 +2,10 @@
 angular.module("app")
 
 .factory('SessionSrvc', [
-'$localStorage', '$location', 'Conf',
-function($localStorage, $location, Conf) {
+'$localStorage', '$location', function($localStorage, $location) {
 
-  var _cuKey = $location.host() + $location.port() + Conf.appId + 'currentUser';
+  var _cuKey = $location.host() + $location.port() + 'currentUser';
+  var _lastRepo = _cuKey + 'lastRepo';
 
   return {
     setCurrentUser: function(currentUser) {
@@ -22,6 +22,14 @@ function($localStorage, $location, Conf) {
 
     logout: function() {
       delete $localStorage[_cuKey];
+    },
+
+    setLastRepo: function(lastRepo) {
+      $localStorage[_lastRepo] = lastRepo;
+    },
+
+    getLastRepo: function() {
+      return $localStorage[_lastRepo];
     }
   };
 

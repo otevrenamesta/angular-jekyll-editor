@@ -1,9 +1,7 @@
 
 angular.module("app")
 
-.factory('GithubSrvc', [
-'$http', '$window', 'Conf',
-function($http, $window, Conf) {
+.factory('GithubSrvc', ['$http', '$window', function($http, $window) {
 
   var _octo, _repo;
 
@@ -19,9 +17,9 @@ function($http, $window, Conf) {
     return rv;
   }
 
-  function _getRepo() {
-    if(!_repo) {
-      var repoinfo = Conf.repo.split('/');
+  function _getRepo(repo) {
+    if(repo !== undefined) {
+      var repoinfo = repo.split('/');
       _repo = _octo.repos(repoinfo[0], repoinfo[1]);
     }
     return _repo;
@@ -47,9 +45,17 @@ function($http, $window, Conf) {
 
   return {
 
-    login: function(credentials, done) {
+    login: function(credentials, repo, done) {
       _octo = new Octokat(credentials);
-      _octo.me.fetch(done);
+      _octo.me.fetch(function(err, user) {
+        if(err) { return done(err); }
+        _getRepo(repo).fetch(function(err, repo){
+          if(err) { return done(err); }
+          var c = repo.collaborators.contains(user.login);
+          done(null, user);
+        });
+      });
+
     },
 
     repoinfo: function(done) {

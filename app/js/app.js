@@ -14,18 +14,19 @@ var app = angular.module("app", [
   }
 
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
-
     // if route requires auth and user is not logged in
-    if ((! _routeClean($location.url())) && (! SessionSrvc.isLoggedIn())) {
+    if ((! _routeClean($location.url())) &&
+        (! SessionSrvc.isLoggedIn())) {
       // redirect back to login
       $location.path("/login");
     }
   });
 
   if(SessionSrvc.isLoggedIn()) {
-    GithubSrvc.login(SessionSrvc.getCurrentUser(), function(err, userinfo) {
-      $rootScope.onLoggedIn(userinfo);
-    });
+    var curUser = SessionSrvc.getCurrentUser();
+    // GithubSrvc.login(curUser, function(err, userinfo) {
+    //   $rootScope.onLoggedIn(userinfo);
+    // });
   }
 
   $rootScope.onLoggedIn = function(userinfo) {
@@ -55,7 +56,8 @@ var app = angular.module("app", [
       request: function(config) {
         config.headers = config.headers || {};
         if (SessionSrvc.getCurrentUser()) {
-          config.headers.Authorization = 'Bearer ' + SessionSrvc.getCurrentUser().token;
+          config.headers.Authorization = 'Bearer ' +
+            SessionSrvc.getCurrentUser().token;
         }
         return config;
       },

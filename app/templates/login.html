@@ -14,7 +14,7 @@
     <p translate>
       You need authenticate prior to administrate.
       Please use credetials of your github account,
-      that has access to {{conf.repo}} repository.
+      that has access to selected repository.
     </p>
 
   </div>
@@ -22,6 +22,14 @@
   <div class="small-12 large-6 columns">
 
     <form data-ng-submit="login();" name="loginfrm" role="form">
+
+      <div class="form-group" ng-show="conf.repos.length > 1">
+        <label class="control-label">{{'Select web for administration'|translate}}</label>
+
+        <select class="form-control" ng-model="selectedRepo"
+          ng-options="r as r.site for r in conf.repos track by r.site">
+        </select>
+      </div>
 
       <div class="form-group">
         <input type="text" name="uname" class="form-control"

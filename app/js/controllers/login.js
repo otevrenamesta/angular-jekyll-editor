@@ -6,16 +6,19 @@ angular.module("app")
 function($scope, $rootScope, $location, GithubSrvc, SessionSrvc, Conf) {
 
   $scope.credentials = { username: "", password: "" };
+  $scope.selectedRepo = SessionSrvc.getLastRepo() || '';
   $scope.error = null;
   $scope.conf = Conf;
 
   $scope.login = function() {
-    GithubSrvc.login($scope.credentials, function(err, userinfo) {
+    var s = $scope.selectedRepo;
+    GithubSrvc.login($scope.credentials, s.repo, function(err, userinfo) {
       $scope.$apply(function() {
         if (err) {
           $scope.error = 'Invalid usename or password';
         } else {
           var user = angular.copy($scope.credentials, user);
+          SessionSrvc.setLastRepo(s);
           SessionSrvc.setCurrentUser(user);
           $rootScope.onLoggedIn(userinfo);
           $location.path("/");
