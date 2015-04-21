@@ -1,7 +1,7 @@
 {
   "name": "angular-jekyll-editor",
   "title": "Angular based editor for jekyll based sites",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "author": {
     "name": "Vaclav Klecanda <vencax77@gmail.com>"
