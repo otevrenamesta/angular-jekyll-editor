@@ -19,7 +19,7 @@ module.exports = (lineman) ->
 
   _cfg =
     apiurl: process.env.API_URL || ''
-    repos: process.env.REPOS || JSON.stringify(_defaultrepos)
+    repos: JSON.stringify(process.env.REPOS || _defaultrepos)
 
   app.pages.dev.context.env_cfg = app.pages.dist.context.env_cfg = _cfg
 
