@@ -56,7 +56,7 @@ git push heroku master
 Or you can generate the static files on your own.
 
 ```
-export REPOS=REPOS="[{site: 'http://www.mysuperjekyllsite.com', repo: 'piratek/piratek.github.io'}]"
+export REPOS="[{site: 'http://www.mysuperjekyllsite.com', repo: 'piratek/piratek.github.io'}]"
 lineman build
 # now you have all files in dist folder
 ```
