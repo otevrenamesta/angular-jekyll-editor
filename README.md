@@ -19,11 +19,20 @@ For this purpose the [octocat.js library](https://github.com/philschatz/octokat.
 
 ## configuration
 
-Done only with environment variables:
+Done only with single environment variable:
 
-- REPO: address of targeted repository without github.com prefix (e.g.: piratek/piratek.github.io)
-- SITEURL: host url where jekyll site is served. Typically on your domain or e.g http://kolovraty.github.io
+- REPOS: JSON string containing array of objects with site and repo information.
+Where site is host url where jekyll site is served.
+Typically on your domain or e.g http://kolovraty.github.io.
+And repo is address of targeted repository without github.com prefix (e.g.: piratek/piratek.github.io).
 
+Example:
+```
+[
+  {site: 'http://www.mysuperjekyllsite.com', repo: 'piratek/piratek.github.io'},
+  {site: 'http://www.myanothersite.com', repo: 'leme/trololo.github.io'}
+]
+```
 
 ## installation
 
@@ -40,16 +49,14 @@ The most easy way is deploy angular-jekyll-editor on [heroku](https://www.heroku
 
 ```
 heroku create my-organisation-webadmin
-heroku config:set REPO=piratek/piratek.github.io
-heroku config:set SITEURL=http://www.mysuperjekyllsite.com
+heroku config:set REPOS="[{site: 'http://www.mysuperjekyllsite.com', repo: 'piratek/piratek.github.io'}]"
 git push heroku master
 ```
 
 Or you can generate the static files on your own.
 
 ```
-export REPO=piratek/piratek.github.io
-export SITEURL=http://www.mysuperjekyllsite.com
+export REPOS=REPOS="[{site: 'http://www.mysuperjekyllsite.com', repo: 'piratek/piratek.github.io'}]"
 lineman build
 # now you have all files in dist folder
 ```
