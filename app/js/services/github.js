@@ -17,18 +17,10 @@ angular.module("app")
     return rv;
   }
 
-  function _getRepo(repo) {
-    if(repo !== undefined) {
-      var repoinfo = repo.split('/');
-      _repo = _octo.repos(repoinfo[0], repoinfo[1]);
-    }
-    return _repo;
-  }
-
   function _saveContent(path, content, message, sha, done) {
     var config = { message: message, content: content };
     if(sha) { config.sha = sha; }  // we are updating
-    _getRepo().contents(path).add(config).then(function(newinfo) {
+    _repo.contents(path).add(config).then(function(newinfo) {
       done(null, newinfo);
     }).then(null, function(e) {
       done(e);
@@ -38,7 +30,7 @@ angular.module("app")
   function _delete(file, message, done) {
     var config = { message: message, sha: file.sha };
 
-    _getRepo().contents(file.path).remove(config).then(function(newinfo) {
+    _repo.contents(file.path).remove(config).then(function(newinfo) {
       done(null, newinfo);
     });
   }
@@ -47,9 +39,12 @@ angular.module("app")
 
     login: function(credentials, repo, done) {
       _octo = new Octokat(credentials);
+      var repoinfo = repo.split('/');
+      _repo = _octo.repos(repoinfo[0], repoinfo[1]);
+
       _octo.me.fetch(function(err, user) {
         if(err) { return done(err); }
-        _getRepo(repo).fetch(function(err, repo){
+        _repo.fetch(function(err, repo){
           if(err) { return done(err); }
           var c = repo.collaborators.contains(user.login);
           done(null, user);
@@ -59,12 +54,12 @@ angular.module("app")
     },
 
     repoinfo: function(done) {
-      _getRepo().fetch(done);
+      _repo.fetch(done);
     },
 
     listPages: function(path, done) {
       if(path === '/') { path = ''; }
-      _getRepo().contents(path).read(function(err, content) {
+      _repo.contents(path).read(function(err, content) {
         if(err) { return done(err); }
 
         var pages = _filterPages(JSON.parse(content));
@@ -74,14 +69,14 @@ angular.module("app")
     },
 
     getContent: function(path, done) {
-      _getRepo().contents(path).read(function(err, content) {
+      _repo.contents(path).read(function(err, content) {
         if(err) { return done(err); }
         done(null, content);
       });
     },
 
     updateContent: function(path, content, message, done) {
-      _getRepo().contents(path).fetch().then(function(info) {
+      _repo.contents(path).fetch().then(function(info) {
         _saveContent(path, Base64.encode(content), message, info.sha, done);
       });
     },
@@ -95,7 +90,7 @@ angular.module("app")
     },
 
     listPosts: function(done) {
-      _getRepo().contents('_posts').read(function(err, content) {
+      _repo.contents('_posts').read(function(err, content) {
         if(err) { return done(err); }
 
         done(null, JSON.parse(content));
@@ -103,7 +98,7 @@ angular.module("app")
     },
 
     getFiles: function(filter, done) {
-      _getRepo().contents('static/media').read(function(err, content) {
+      _repo.contents('static/media').read(function(err, content) {
         if(err) { return done(err); }
 
         done(null, JSON.parse(content));
@@ -121,7 +116,7 @@ angular.module("app")
     deletePage: function(file, done) {
       if(file.path.length === 0) {return;}
       var p = file.path + '/index.md';
-      _getRepo().contents(p).fetch(function(err, content) {
+      _repo.contents(p).fetch(function(err, content) {
         if(err) { return done(err); }
         _delete(content, 'Removing page ' + file.name, done);
       });
@@ -145,7 +140,7 @@ angular.module("app")
     },
 
     listRepoEvents: function(done) {
-      _getRepo().events.fetch(function(err, items) {
+      _repo.events.fetch(function(err, items) {
         if(err) { return done(err); }
         return done(null, items);
       });

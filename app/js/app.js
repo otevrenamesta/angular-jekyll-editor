@@ -24,9 +24,10 @@ var app = angular.module("app", [
 
   if(SessionSrvc.isLoggedIn()) {
     var curUser = SessionSrvc.getCurrentUser();
-    // GithubSrvc.login(curUser, function(err, userinfo) {
-    //   $rootScope.onLoggedIn(userinfo);
-    // });
+    var lastRepoNfo = SessionSrvc.getLastRepo();
+    GithubSrvc.login(curUser, lastRepoNfo.repo, function(err, userinfo) {
+      $rootScope.onLoggedIn(userinfo);
+    });
   }
 
   $rootScope.onLoggedIn = function(userinfo) {
