@@ -34,6 +34,16 @@ Example:
 ]
 ```
 
+Or env file can be created:
+```bash
+export REPOS='[{"site": "http://piratek.github.io", "repo": "piratek/piratek.github.io"},...]'
+```
+
+and before lineman operation can be sourced:
+```bash
+source env && lineman build
+```
+
 ## installation
 
 Dependencies are [node.js](https://nodejs.org/) and its package manager [npm](https://www.npmjs.com/).
