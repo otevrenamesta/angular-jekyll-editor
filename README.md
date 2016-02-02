@@ -27,10 +27,10 @@ Typically on your domain or e.g http://kolovraty.github.io.
 And repo is address of targeted repository without github.com prefix (e.g.: piratek/piratek.github.io).
 
 Example:
-```
+```json
 [
-  {site: 'http://www.mysuperjekyllsite.com', repo: 'piratek/piratek.github.io'},
-  {site: 'http://www.myanothersite.com', repo: 'leme/trololo.github.io'}
+  {"site": "http://www.mysuperjekyllsite.com", "repo": "piratek/piratek.github.io"},
+  {"site": "http://www.myanothersite.com", "repo": "leme/trololo.github.io"}
 ]
 ```
 
