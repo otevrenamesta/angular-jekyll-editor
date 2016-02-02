@@ -12,14 +12,14 @@ module.exports = (lineman) ->
   app.prependTasks.common.push "nggettext_compile"
 
   # config
-  _defaultrepos = [
-    {site: 'http://piratek.github.io', repo: 'piratek/piratek.github.io'}
-    {site: 'http://tabor.pirati.cz', repo: 'pirati-web/tabor.pirati.cz'}
-  ]
+  try
+    _repos = JSON.parse(process.env.REPOS)
+  catch ex
+    throw "REPOS env var is not set or probably NOT JSON!"
 
   _cfg =
     apiurl: process.env.API_URL || ''
-    repos: JSON.stringify(process.env.REPOS || _defaultrepos)
+    repos: JSON.stringify(_repos)
 
   app.pages.dev.context.env_cfg = app.pages.dist.context.env_cfg = _cfg
 
